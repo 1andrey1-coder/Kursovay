@@ -76,7 +76,6 @@ namespace schedule
             //TblScheduleDb = DB.GetInstance().TblScheduleDbs.Where(s => s.Id == SelectedGroup2.GroupId).ToList();
             //listschedule2.ItemsSource = Replacement;
 
-
             FillGroup();
             var user = DB.GetInstance().TblGroups.Include(s => s.SemestrNuber).Include(s => s.SemestrWeek);
             Group = DB.GetInstance().TblGroups.ToList();
@@ -88,6 +87,8 @@ namespace schedule
 
             grud = new TblGroup();
             grud = SelectedGroup;
+
+
         }
         //поиск
         void Signal(string prop) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
@@ -158,10 +159,13 @@ namespace schedule
         //}
         private void Obv(object sender, RoutedEventArgs e)
         {
-            //TblScheduleDb = DB.GetInstance().TblScheduleDbs.Where(s => s.Groupid == SelectedGroup2.GroupId).ToList();
-            TblScheduleDb = DB.GetInstance().TblScheduleDbs.ToList();
-            DB.GetInstance().SaveChanges();
-      
+            using (var db = new ScheduleDbContext())
+            {
+                TblScheduleDb = db.TblScheduleDbs.Where(s => s.Groupid == SelectedGroup2.GroupId).ToList();
+                //TblScheduleDb = db.TblScheduleDbs.ToList();
+                db.SaveChanges();
+
+            }
         }
 
         private void Obnov(object sender, RoutedEventArgs e)
@@ -172,8 +176,8 @@ namespace schedule
             {
                 using (var db = new ScheduleDbContext())
                 {
-
-                    Replacement = DB.GetInstance().TblReplacements.ToList();
+                   
+                    Replacement = db.TblReplacements.ToList();
                     db.SaveChanges();
                 }
             }

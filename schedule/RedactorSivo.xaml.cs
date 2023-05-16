@@ -135,8 +135,8 @@ namespace schedule
                     DB.GetInstance().TblScheduleDbs.Remove(item2);
                     //db.TblScheduleDbs.Update(item2);
                     DB.GetInstance().SaveChanges();
-                    tbl2 = DB.GetInstance().TblScheduleDbs.ToList();
-
+                    tbl2 = DB.GetInstance().TblScheduleDbs.Where(s=>s.Groupid==SelectedGroup.GroupId).ToList();
+                
 
 
 
