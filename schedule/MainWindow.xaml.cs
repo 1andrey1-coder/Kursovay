@@ -162,7 +162,7 @@ namespace schedule
         {
             using (var db = new ScheduleDbContext())
             {
-                TblScheduleDb = db.TblScheduleDbs.Where(s => s.Groupid ==SelectedGroup.GroupId).ToList();
+                TblScheduleDb = db.TblScheduleDbs.Where(s => s.Groupid ==SelectedGroup2.GroupId).ToList();
                 //TblScheduleDb = db.TblScheduleDbs.ToList();
                 db.SaveChanges();
 
