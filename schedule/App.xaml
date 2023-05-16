@@ -1,0 +1,26 @@
+﻿<Application x:Class="schedule.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:schedule"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources >
+        <Style   TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="Monotype Coursiva"/>
+            <Setter Property="FontSize" Value="14"/>
+             
+        </Style>
+        <SolidColorBrush x:Key="solidGrayBrush" Color="Wheat"/>
+
+        <Style x:Key="CustomMessageBox" TargetType="ContentControl">
+            <Setter Property="Foreground" Value="red"/>
+            <Setter Property="Background" Value="Wheat"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+    </Application.Resources>
+    
+    
+</Application>

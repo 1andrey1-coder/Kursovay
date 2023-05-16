@@ -1,0 +1,247 @@
+﻿<Window x:Class="schedule.RedactorSivo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:schedule"
+        mc:Ignorable="d"
+        Title="Добавление Записей" Height="580" Width="630" Background="LightSkyBlue"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" >
+    <Window.Resources>
+        <Style TargetType="{x:Type Grid}">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="5" Color="#4d7fb8" Opacity="0.7" BlurRadius="7" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="8"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition  />
+            <RowDefinition  Height="40"/>
+            <RowDefinition  />
+
+
+        </Grid.RowDefinitions>
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="47"/>
+            <ColumnDefinition Width="250"  />
+            <ColumnDefinition Width="146"/>
+            <ColumnDefinition />
+
+
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Button Background="#fccf03" Width="150" Content="Назад" Click="Nazad" Height="25"/>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Top" 
+                    Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,60,0,0" Height="20">
+            <TextBlock FontSize="14" HorizontalAlignment="Left" Text="Группа:  "/>
+            <TextBlock Text="{Binding grud.Group}" Width="88" Height="16" />
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Top" 
+                    Orientation="Vertical" Grid.Column="0" Grid.Row="0" Margin="0,90,0,0" Height="60">
+            <TextBlock FontSize="14" HorizontalAlignment="Left" Text="Сколько недель" Height="20"/>
+            <TextBlock FontSize="14" HorizontalAlignment="Left" Text="в семестре:   "/>
+            <TextBlock HorizontalAlignment="Center" Text="{Binding grud.SemestrWeek.SemesterWeek}" Width="37" Height="20"/>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Top" Grid.Row="0"  Margin="0,152,0,0" Height="39">
+
+            <TextBlock FontSize="14" HorizontalAlignment="Left" Text="Специальность: "/>
+            <TextBlock HorizontalAlignment="Left" Text="{Binding grud.Speciality.Speciality}" Width="210"/>
+
+
+
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Top" Orientation="Horizontal" 
+                    Grid.Row="0" Grid.Column="0" Margin="0,30,0,0" Height="20">
+            <TextBlock FontSize="14" HorizontalAlignment="Left" Text="Семестр: " Width="62"/>
+            <TextBlock  VerticalAlignment="Center" Text="{Binding grud.SemestrNuber.SemesterNuber}"
+                        Width="88" Height="16"/>
+        </StackPanel>
+
+
+
+
+
+
+        <StackPanel Orientation="Horizontal" Height="30 " VerticalAlignment="Top" Grid.Column="2" Width="246" HorizontalAlignment="Center">
+            <Label  Background="DeepSkyBlue" Width="80" Content="Предмет"/>
+
+            <Label  Background="DeepSkyBlue" Width="80" Content="Часы"/>
+            <Label   Background="DeepSkyBlue"   Content="Кол-во пар" Width="85"/>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="2"
+                    Width="250"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="194" >
+
+
+            <!--Предмет-->
+            <StackPanel Width="80">
+                <TextBox />
+                <TextBox />
+                <TextBox />
+                <TextBox />
+                <TextBox />
+                <TextBox />
+            </StackPanel>
+
+
+
+            <!--Предмет-->
+
+            <!--Часы-->
+            <StackPanel Width="80">
+                <TextBox  />
+                <TextBox />
+                <TextBox />
+                <TextBox />
+                <TextBox />
+                <TextBox />
+            </StackPanel>
+
+
+            <!--Часы-->
+
+
+
+            <!--Кол-во пар-->
+            <StackPanel Width="80">
+                <TextBlock Height="18" />
+                <TextBlock Height="18" />
+                <TextBlock Height="18" />
+                <TextBlock Height="18" />
+                <TextBlock Height="18" />
+                <TextBlock Height="17" />
+            </StackPanel>
+
+
+
+            <!--Кол-во пар-->
+
+        </StackPanel>
+        <Button Grid.Column="2" VerticalAlignment="Bottom" 
+                Background="#fccf03" Content="Сохранить " Height="25" Margin="0,0,90,95"/>
+
+
+        <StackPanel  Grid.Row="0"   Grid.Column="3" Margin="0,0,0,35" Grid.RowSpan="2"
+                  >
+            <Button Background="#fccf03" Content="Сохранить запись" Click="Save"   Height="27"/>
+            <Label Background="LightBlue" >
+                <StackPanel DataContext="{Binding item1}">
+
+                    <TextBlock Text="День"/>
+                    <TextBox x:Name="Day"  Text="{Binding Day}"  HorizontalAlignment="Left"  Width="100" />
+                    <TextBlock Text="Препод"/>
+                    <TextBox x:Name="Name"  Text="{Binding Name}" HorizontalAlignment="Left" Width="100"/>
+                    <TextBlock Text="Пара"/>
+                    <TextBox x:Name="Pair" Text="{Binding Pair}"  HorizontalAlignment="Left" Width="100"/>
+                    <TextBlock Text="Предмет"/>
+                    <TextBox x:Name="Predmet"  Text="{Binding Predmet}"  HorizontalAlignment="Left" Width="100"/>
+                    <TextBlock Text="Аудитория"/>
+                    <TextBox x:Name="Cabinet"  Text="{Binding Cabinet}"  HorizontalAlignment="Left" Width="100"/>
+
+                </StackPanel>
+            </Label>
+        </StackPanel>
+        <!--<DataGrid SelectedItem="{Binding item1}" ItemsSource="{Binding tbl1}"  x:Name="dataGrid" AutoGenerateColumns="False" 
+                  Grid.Row="3" Grid.RowSpan="2"  Grid.Column="3" MaxWidth="600"
+                  HorizontalAlignment="Center" Width="468">
+            
+                <DataGrid.Columns>
+                <DataGridTextColumn Header="День" Width="100" Binding="{Binding Day}"/>
+                <DataGridTextColumn Header="Пара" Width="50" Binding="{Binding Pair}"/>
+                <DataGridTextColumn Header="Предмет" Width="100" Binding="{Binding Predmet}"/>
+                <DataGridTextColumn Header="Препод" Width="100" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Аудитория" Width="70" Binding="{Binding Cabinet}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>-->
+
+
+
+
+
+        <ListView  Background="LightBlue" ItemsSource="{Binding tbl2}" 
+                  SelectedItem="{Binding item2}" x:Name="Pokaz" MinHeight="200"
+                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left"
+                  Width="444" Margin="-4,40,0,10" Grid.RowSpan="2">
+            <ListView.View>
+                <GridView >
+                    <GridViewColumn Header="День" Width="100" DisplayMemberBinding="{Binding Day}"/>
+                    <GridViewColumn Header="Препод" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Пара" Width="50" DisplayMemberBinding="{Binding Pair}"/>
+                    <GridViewColumn Header="Предмет" Width="100" DisplayMemberBinding="{Binding Predmet}"/>
+                    <GridViewColumn Header="Аудитория" Width="75" DisplayMemberBinding="{Binding Cabinet}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <StackPanel Height="246"  VerticalAlignment="Top" 
+                     Grid.Row="1" Grid.Column="3" Margin="0,40,0,0" Grid.RowSpan="2" >
+
+            <Button Background="#fccf03"  Margin="0,0,0,0"
+                        x:Name="Repair2" Content="Редактировать запись"  Click="saved"/>
+
+            <Label  Background="LightBlue">
+
+                <StackPanel  DataContext="{Binding item2}" >
+                    <Label>
+                        <TextBlock Text="Редактирование" />
+                    </Label>
+                    <TextBlock Text="День"/>
+                    <TextBox  Text="{Binding Path=Day}"/>
+                    <TextBlock Text="Препод"/>
+                    <TextBox  Text="{Binding Path=Name}"/>
+                    <TextBlock Text="Пара"/>
+                    <TextBox  Text="{Binding Path=Pair}"/>
+                    <TextBlock Text="Предмет"/>
+                    <TextBox  Text="{Binding Path=Predmet}"/>
+                    <TextBlock Text="Аудитория"/>
+                    <TextBox  Text="{Binding Path=Cabinet}"/>
+
+
+
+                </StackPanel>
+            </Label>
+        </StackPanel>
+
+
+
+
+
+
+        <StackPanel  Grid.Row="1" Orientation="Horizontal" 
+                    HorizontalAlignment="Center" Grid.Column="2" Margin="0,2,0,3" Width="192" 
+                   
+                     >
+
+            <!--<Button  Background="#fccf03" Content="Обновить таблицу" Click="OBN" Width="125"  />-->
+            <Button  Background="#fccf03" Content="Удалить запись с таблицы" Click="Delite" Width="191" />
+
+        </StackPanel>
+        <Label  Grid.Column="0" Grid.ColumnSpan="2" 
+                Content="Таблица с расписанием" Margin="0,262,0,2" Grid.RowSpan="2"  
+                />
+
+    </Grid>
+</Window>

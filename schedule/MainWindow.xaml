@@ -1,0 +1,149 @@
+﻿<Window x:Class="schedule.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:schedule"
+        mc:Ignorable="d"
+        Title="Расписание Колледжа" Height="600" Width="980" Background="LightSkyBlue"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Grid}">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="5" Color="#4d7fb8" Opacity="0.7" BlurRadius="7" />
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="5" Color="#4d7fb8" Opacity="0.1" BlurRadius="7" />
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style TargetType="Button">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="8"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29"/>
+            <RowDefinition Height="38" />
+            <RowDefinition Height="208" />
+            <RowDefinition Height="309" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="292" />
+            <ColumnDefinition Width="592" />
+            <ColumnDefinition  />
+        </Grid.ColumnDefinitions>
+        <StackPanel Height="24" VerticalAlignment="Center"
+                    Grid.Column="0"  Grid.Row="1" Orientation="Horizontal" Margin="0,0,2,0">
+            <ComboBox Background="Azure"  
+                     x:Name="Combobox" ItemsSource="{Binding Selected}"
+                     DisplayMemberPath="Group"
+                     SelectedItem="{Binding SelectedGroup}"
+                     Width="100" HorizontalAlignment="Left"/>
+            <Button Background="#fccf03"
+                    Content="Добавление новой записи" Width="185" Height="24" Click="perexod" Margin="3,0,0,0"/>
+        </StackPanel>
+
+
+
+
+        <StackPanel  HorizontalAlignment="Left" VerticalAlignment="Top" 
+                    Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="3"
+                    Margin="0,1,0,0" Width="700" Height="298">
+            <TextBlock FontSize="15" Text="Поиск" Width="200"
+                       HorizontalAlignment="Left" DockPanel.Dock="Top"  />
+            <TextBox  DockPanel.Dock="Top" Width="200" HorizontalAlignment="Left" Text="{Binding SearchText,
+                UpdateSourceTrigger=PropertyChanged}"  x:Name="txtFilter2" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="1
+                    " Grid.Row="1" Margin="0,0,17,0" Height="24">
+            <ComboBox   Width="148" HorizontalAlignment="Left" x:Name="Combobox2"
+                        ItemsSource="{Binding Selected}" SelectedItem="{Binding SelectedGroup2}"
+                        DisplayMemberPath="Group"/>
+            <!--<Button  Background="#fccf03" Width="108" Content="Обновить" Click="tbl2obnov" />-->
+        </StackPanel>
+        <Label HorizontalAlignment="Left" Grid.Column="0" Width="81" Margin="0,0,0,36" Grid.RowSpan="2"  >
+            <TextBlock FontSize="15" Text="Группы" Width="65" Height="26" />
+        </Label>
+        <Label HorizontalAlignment="Left" Grid.Column="1" Width="326" Margin="0,0,0,36" Grid.RowSpan="2"  >
+            <TextBlock FontSize="15" Text="Выбор группы для просмотра расписания:" Width="318" Height="26" />
+        </Label>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" 
+                    Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="3" Width="700" Height="306">
+            <Label   HorizontalAlignment="Center" Width="160">
+                <TextBlock FontSize="14" Text="  Замененные пары  " Width="155"/>
+            </Label>
+            <Button   Background="#fccf03"
+                  Margin="0,0,0,0"   Content="Изменение в расписании" Click="replacement"  Width="180" Height="24">
+
+            </Button>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" 
+                   Grid.Column="1"  
+                    Grid.Row="3" Height="36" Width="180" >
+            <ComboBox Width="100" x:Name="Combobox4"
+                       DisplayMemberPath="Day" SelectedItem="{Binding SelectedDay2}" Margin="40,13,40,0"/>
+
+        </StackPanel>
+
+
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" 
+                    Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="3"
+                    Margin="1,0,0,0" Width="700" Height="201" >
+
+
+
+            <ListView Background="LightBlue" VerticalAlignment="Center" HorizontalAlignment="Left"  
+                      x:Name="listschedule2"  MinHeight="150" ItemsSource="{Binding Replacement}" Height="204"   >
+                <ListView.View  >
+                    <GridView >
+                        <GridViewColumn  Header="Группа" Width="150" DisplayMemberBinding="{Binding Group}"/>
+                        <GridViewColumn Header="Пара" Width="70" DisplayMemberBinding="{Binding Pair}"/>
+                        <GridViewColumn Header="Аудитория" Width="100" DisplayMemberBinding="{Binding Cabinet}" />
+                        <GridViewColumn Header="Препод" Width="170" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Предмет" Width="150" DisplayMemberBinding="{Binding Predmet}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left"
+                    Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="1"
+                    Width="652" Margin="0,0,0,3" >
+            <ListView  x:Name="groupi" ItemsSource="{Binding TblScheduleDb}" Background="LightBlue"
+                       MaxWidth="900" Width="652"  Height="200">
+                <ListView.View>
+                    <GridView >
+                        <GridViewColumn Header="День" Width="100" DisplayMemberBinding="{Binding Day}"/>
+                        <GridViewColumn Header="Пара" Width="70" DisplayMemberBinding="{Binding Pair}"/>
+                        <GridViewColumn Header="Аудитория" Width="100" DisplayMemberBinding="{Binding Cabinet}" />
+                        <GridViewColumn Header="Препод" Width="170" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Предмет" Width="150" DisplayMemberBinding="{Binding Predmet}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
+        <Image Grid.Row="2" Height="150" 
+               Width="150" VerticalAlignment="Center" HorizontalAlignment="Center"
+               Source="Картинки\Без названия-PhotoRoom.png-PhotoRoom.png" />
+    </Grid>
+</Window>
