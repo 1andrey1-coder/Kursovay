@@ -87,6 +87,7 @@ namespace schedule
 
             grud = new TblGroup();
             grud = SelectedGroup;
+            grud = SelectedGroup2;
 
 
         }
@@ -161,8 +162,8 @@ namespace schedule
         {
             using (var db = new ScheduleDbContext())
             {
-                //TblScheduleDb = db.TblScheduleDbs.Where(s => s.Id == SelectedGroup2.GroupId).ToList();
-                TblScheduleDb = db.TblScheduleDbs.ToList();
+                TblScheduleDb = db.TblScheduleDbs.Where(s => s.Groupid ==SelectedGroup.GroupId).ToList();
+                //TblScheduleDb = db.TblScheduleDbs.ToList();
                 db.SaveChanges();
 
             }
