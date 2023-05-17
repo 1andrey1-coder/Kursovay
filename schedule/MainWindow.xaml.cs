@@ -138,17 +138,18 @@ namespace schedule
         private void Search2()
         {
             
-            if(Combobox2.ItemsSource != null)
+            if(Combobox2.SelectedItem == SelectedGroup2 )
             {
-                //MessageBox.Show("ПРивет");
-            }
-            else
-            {
-                
                 var db = new ScheduleDbContext();
                 var result = db.TblScheduleDbs.Where(s => s.Name.Contains(searchText2));
                 TblScheduleDb = result.ToList();
                 Signal(nameof(TblScheduleDb));
+                //MessageBox.Show("ПРивет");
+            }
+            else
+            {
+              
+
             }
             //result = db.TblScheduleDbs.Where(s => s.Groupid == SelectedGroup2.GroupId).ToList();
             
