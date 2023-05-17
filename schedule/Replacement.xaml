@@ -29,7 +29,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
+            <RowDefinition Height="43" />
             <RowDefinition />
 
 
@@ -41,8 +41,8 @@
 
         </Grid.ColumnDefinitions>
 
-        <StackPanel Height="25" Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="1"
-                    Grid.Row="0" Width="539" HorizontalAlignment="Left" Margin="0,8,0,7">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="1"
+                    Grid.Row="0" Width="539" HorizontalAlignment="Left" Margin="0,9,0,8">
             <Button  Background="#fccf03" Content="Назад" Click="nasad" Width="121"/>
             <Label Content="Дни недели: "  Margin="20,0,5,-1"/>
             <ComboBox x:Name="Combobox3"  DisplayMemberPath="Day"  Margin="0,0,0,0"
@@ -83,7 +83,7 @@
         </DockPanel>
 
 
-        <StackPanel HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1">
+        <StackPanel HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Width="140">
 
 
             <Button  Background="#fccf03"  x:Name="Dobav" Margin="0,0,0,0"  HorizontalAlignment="Center"

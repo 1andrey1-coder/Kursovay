@@ -88,10 +88,10 @@
         <Label HorizontalAlignment="Left" Grid.Column="1" Width="326" Margin="0,0,0,36" Grid.RowSpan="2"  >
             <TextBlock FontSize="15" Text="Выбор группы для просмотра расписания:" Width="318" Height="26" />
         </Label>
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" 
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" 
                     Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="3" Width="700" Height="306">
-            <Label   HorizontalAlignment="Center" Width="160">
-                <TextBlock FontSize="14" Text="  Замененные пары  " Width="155"/>
+            <Label   Width="160">
+                <TextBlock FontSize="14" Text="    Замененные пары" Width="155"/>
             </Label>
             <Button   Background="#fccf03"
                   Margin="0,0,0,0"   Content="Изменение в расписании" Click="replacement"  Width="180" Height="24">
