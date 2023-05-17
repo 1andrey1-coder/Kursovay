@@ -150,7 +150,7 @@
         <StackPanel Grid.Row="1" Grid.Column="1"  >
             <TextBlock FontSize="15" Text="Поиск по преподователю" Width="200"
                        HorizontalAlignment="Left" DockPanel.Dock="Top"  />
-            <TextBox  DockPanel.Dock="Top" Width="200" HorizontalAlignment="Left" Text="{Binding SearchText,
+            <TextBox  DockPanel.Dock="Top" Width="200" HorizontalAlignment="Left" Text="{Binding SearchText2,
                 UpdateSourceTrigger=PropertyChanged}"  x:Name="txtFilter3" />
         </StackPanel>
 

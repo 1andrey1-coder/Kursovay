@@ -69,7 +69,15 @@ namespace schedule
             InitializeComponent();
             DataContext = this;
 
+            //поиск
+
             Search();
+            Search2();
+
+            //поиск
+
+            //вывод данных в таблицах и списках
+
             Day = DB.GetInstance().TblWeekdays.ToList();
             Replacement = DB.GetInstance().TblReplacements.ToList();
             TblScheduleDb = DB.GetInstance().TblScheduleDbs.ToList();
@@ -89,11 +97,13 @@ namespace schedule
             grud = SelectedGroup;
             grud = SelectedGroup2;
 
+            //вывод данных в таблицах и списках
 
         }
         //поиск
         void Signal(string prop) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         private string searchText = "";
+        private string searchText2 = "";
         private TblGroup selectedGroup2;
 
         public string SearchText
@@ -105,6 +115,15 @@ namespace schedule
                 Search();
             }
         }
+        public string SearchText2
+        {
+            get => searchText2;
+            set
+            {
+                searchText2 = value;
+                Search2();
+            }
+        }
         private void Search()
         {
             var db = new ScheduleDbContext();
@@ -113,9 +132,18 @@ namespace schedule
                 );
             Replacement = result.ToList();
             Signal(nameof(Replacement));
+         
 
         }
+        private void Search2()
+        {
+            var db = new ScheduleDbContext();
+            var result = db.TblScheduleDbs.Where(s => s.Name.Contains(searchText2));
+            TblScheduleDb = result.ToList();
+            Signal(nameof(TblScheduleDb));
 
+        }
+        //поиск
 
 
 
