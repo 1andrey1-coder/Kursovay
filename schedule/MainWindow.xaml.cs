@@ -79,9 +79,9 @@ namespace schedule
             FillGroup();
             var user = DB.GetInstance().TblGroups.Include(s => s.SemestrNuber).Include(s => s.SemestrWeek);
             Group = DB.GetInstance().TblGroups.ToList();
-            Group2 = DB.GetInstance().TblGroups.ToList();
+            //Group2 = DB.GetInstance().TblGroups.ToList();
             Combobox.ItemsSource = Group;
-            Combobox2.ItemsSource = Group2;
+            //Combobox2.ItemsSource = Group2;
             Combobox4.ItemsSource = Day;
 
 
@@ -162,7 +162,7 @@ namespace schedule
         {
             using (var db = new ScheduleDbContext())
             {
-                TblScheduleDb = db.TblScheduleDbs.Where(s => s.Groupid ==SelectedGroup2.GroupId).ToList();
+                TblScheduleDb = db.TblScheduleDbs.Where(s => s.Groupid ==SelectedGroup.GroupId).ToList();
                 //TblScheduleDb = db.TblScheduleDbs.ToList();
                 db.SaveChanges();
 
@@ -199,6 +199,11 @@ namespace schedule
                 redactorSivos.ShowDialog();
                 Obv(sender, e);
             }
+        }
+
+        private void Vce(object sender, RoutedEventArgs e)
+        {
+            Replacement = DB.GetInstance().TblReplacements.ToList();
         }
     }
 }

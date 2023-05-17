@@ -269,5 +269,10 @@ namespace schedule
         {
             DB.GetInstance().SaveChanges();
         }
+
+        private void vce(object sender, RoutedEventArgs e)
+        {
+            tbl_replacement = DB.GetInstance().TblReplacements.ToList();
+        }
     }
 }

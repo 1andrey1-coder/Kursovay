@@ -32,7 +32,7 @@
             <RowDefinition Height="40" />
             <RowDefinition />
 
-            
+
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -42,7 +42,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Height="25" Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="1"
-                    Grid.Row="0" Width="376" HorizontalAlignment="Left" Margin="0,8,0,8">
+                    Grid.Row="0" Width="539" HorizontalAlignment="Left" Margin="0,8,0,7">
             <Button  Background="#fccf03" Content="Назад" Click="nasad" Width="121"/>
             <Label Content="Дни недели: "  Margin="20,0,5,-1"/>
             <ComboBox x:Name="Combobox3"  DisplayMemberPath="Day"  Margin="0,0,0,0"
@@ -57,12 +57,14 @@
                     </TransformGroup>
                 </ComboBox.RenderTransform>
             </ComboBox>
+            <Button Background="#ffe675" Click="vce"  Content="Показать весь список" 
+                    Width="164" />
         </StackPanel>
 
 
         <DockPanel Grid.Row="1" Grid.Column="0" >
 
-            <TextBlock FontSize="15" Text="Поиск" Width="200"
+            <TextBlock FontSize="15" Text="Поиск по преподователю" Width="200"
                        HorizontalAlignment="Left" DockPanel.Dock="Top"  />
             <TextBox  DockPanel.Dock="Top" Width="200" HorizontalAlignment="Left" Text="{Binding SearchText,
                 UpdateSourceTrigger=PropertyChanged}"  x:Name="txtFilter" />

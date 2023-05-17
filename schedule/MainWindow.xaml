@@ -40,14 +40,14 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="29"/>
-            <RowDefinition Height="38" />
-            <RowDefinition Height="208" />
+            <RowDefinition Height="45" />
+            <RowDefinition Height="201" />
             <RowDefinition Height="309" />
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="292" />
-            <ColumnDefinition Width="592" />
+            <ColumnDefinition Width="646" />
             <ColumnDefinition  />
         </Grid.ColumnDefinitions>
         <StackPanel Height="24" VerticalAlignment="Center"
@@ -66,20 +66,22 @@
 
         <StackPanel  HorizontalAlignment="Left" VerticalAlignment="Top" 
                     Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="3"
-                    Margin="0,1,0,0" Width="700" Height="298">
-            <TextBlock FontSize="15" Text="Поиск" Width="200"
+                    Margin="0,7,0,0" Width="700" Height="298">
+            <TextBlock FontSize="15" Text="Поиск по преподователю" Width="200"
                        HorizontalAlignment="Left" DockPanel.Dock="Top"  />
             <TextBox  DockPanel.Dock="Top" Width="200" HorizontalAlignment="Left" Text="{Binding SearchText,
                 UpdateSourceTrigger=PropertyChanged}"  x:Name="txtFilter2" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="1
+        <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="1
                     " Grid.Row="1" Margin="0,0,17,0" Height="24">
-            <ComboBox   Width="148" HorizontalAlignment="Left" x:Name="Combobox2"
+            -->
+        <!--<ComboBox   Width="148" HorizontalAlignment="Left" x:Name="Combobox2"
                         ItemsSource="{Binding Selected}" SelectedItem="{Binding SelectedGroup2}"
-                        DisplayMemberPath="Group"/>
-            <!--<Button  Background="#fccf03" Width="108" Content="Обновить" Click="tbl2obnov" />-->
-        </StackPanel>
+                        DisplayMemberPath="Group"/>-->
+        <!--<Button  Background="#fccf03" Width="108" Content="Обновить" Click="tbl2obnov" />-->
+        <!--
+        </StackPanel>-->
         <Label HorizontalAlignment="Left" Grid.Column="0" Width="81" Margin="0,0,0,36" Grid.RowSpan="2"  >
             <TextBlock FontSize="15" Text="Группы" Width="65" Height="26" />
         </Label>
@@ -95,24 +97,27 @@
                   Margin="0,0,0,0"   Content="Изменение в расписании" Click="replacement"  Width="180" Height="24">
 
             </Button>
+            <Button 
+                Content="Показать весь список" Click="Vce"
+                Width="163"  Background="#ffe675" Margin="0,5,0,0" />
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" 
                    Grid.Column="1"  
-                    Grid.Row="3" Height="36" Width="180" >
-            <ComboBox Width="100" x:Name="Combobox4"
-                       DisplayMemberPath="Day" SelectedItem="{Binding SelectedDay2}" Margin="40,13,40,0"/>
+                    Grid.Row="3" Height="47" Width="180" >
+            <ComboBox  x:Name="Combobox4"
+                       DisplayMemberPath="Day"  SelectedItem="{Binding SelectedDay2}" Margin="0,20,40,0" Width="140"/>
 
         </StackPanel>
 
 
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" 
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" 
                     Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="3"
-                    Margin="1,0,0,0" Width="700" Height="201" >
+                    Margin="1,0,0,0" Width="700" Height="225" >
 
 
 
-            <ListView Background="LightBlue" VerticalAlignment="Center" HorizontalAlignment="Left"  
-                      x:Name="listschedule2"  MinHeight="150" ItemsSource="{Binding Replacement}" Height="204"   >
+            <ListView Background="LightBlue" HorizontalAlignment="Left" 
+                      x:Name="listschedule2"  MinHeight="150" ItemsSource="{Binding Replacement}" Height="195"    >
                 <ListView.View  >
                     <GridView >
                         <GridViewColumn  Header="Группа" Width="150" DisplayMemberBinding="{Binding Group}"/>
@@ -140,6 +145,13 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1"  >
+            <TextBlock FontSize="15" Text="Поиск по преподователю" Width="200"
+                       HorizontalAlignment="Left" DockPanel.Dock="Top"  />
+            <TextBox  DockPanel.Dock="Top" Width="200" HorizontalAlignment="Left" Text="{Binding SearchText,
+                UpdateSourceTrigger=PropertyChanged}"  x:Name="txtFilter3" />
         </StackPanel>
 
         <Image Grid.Row="2" Height="150" 
