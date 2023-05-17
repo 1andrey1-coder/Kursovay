@@ -86,7 +86,7 @@
             <TextBlock FontSize="15" Text="Группы" Width="65" Height="26" />
         </Label>
         <Label HorizontalAlignment="Left" Grid.Column="1" Width="326"  Grid.RowSpan="2"  >
-            <TextBlock FontSize="15" Text="Просмотр расписания у групп:" Width="318" Margin="-5,0,0,0" Height="26" />
+            <TextBlock FontSize="15" Text="Просмотр расписания у групп" Width="318" Margin="-5,0,0,0" Height="26" />
         </Label>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" 
                     Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="3" Width="700" Height="306">

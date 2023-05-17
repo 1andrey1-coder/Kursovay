@@ -139,6 +139,7 @@ namespace schedule
         {
             var db = new ScheduleDbContext();
             var result = db.TblScheduleDbs.Where(s => s.Name.Contains(searchText2));
+            //result = db.TblScheduleDbs.Where(s => s.Groupid == SelectedGroup2.GroupId).ToList();
             TblScheduleDb = result.ToList();
             Signal(nameof(TblScheduleDb));
 
