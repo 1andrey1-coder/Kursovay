@@ -137,19 +137,27 @@ namespace schedule
         }
         private void Search2()
         {
+       
             //    var SelectedGroup2 = Combobox2.SelectedItem as TblGroup;
+            //Combobox2.SelectedItem != SelectedGroup2
 
-            if ( Combobox2.SelectedItem == SelectedGroup2 )
+            if ( Combobox2.SelectedItem == SelectedGroup2)
             {
                 var db = new ScheduleDbContext();
                 var result = db.TblScheduleDbs.Where(s => s.Name.Contains(searchText2));
-                TblScheduleDb = result.ToList().ToList();
+                TblScheduleDb = result.ToList();  
+                //TblScheduleDb = result.ToList();
                 Signal(nameof(TblScheduleDb));
-                //MessageBox.Show("ПРивет");
+              
             }
-          
-          
-            
+            //else
+            //{
+               
+            //     MessageBox.Show("ПРивет");
+            //}
+
+
+
 
         }
         //поиск
