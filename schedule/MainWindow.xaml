@@ -107,6 +107,7 @@
             <ComboBox  x:Name="Combobox4"
                        DisplayMemberPath="Day" ItemsSource="{Binding Selected2}" 
                        SelectedItem="{Binding SelectedDay2}" Margin="0,20,40,0" Width="140" Height="23"/>
+            
 
         </StackPanel>
 
