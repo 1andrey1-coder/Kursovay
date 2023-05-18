@@ -154,9 +154,9 @@
                 UpdateSourceTrigger=PropertyChanged}"  x:Name="txtFilter3" />
            
         </StackPanel>
-        <Button Click="VCE"
+        <Button  Click="VCE"
             
-            Margin="0,12,0,0" Background="#ffe675" 
+            Margin="40,12,0,0" Background="#ffe675" 
             Grid.Row="1" Grid.Column="1" Content="Показать весь список"
                 Width="170" Height="22"/>
         
