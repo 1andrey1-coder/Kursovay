@@ -26,9 +26,9 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition  />
-            <RowDefinition  Height="40"/>
-            <RowDefinition  />
+            <RowDefinition Height="262*"  />
+            <RowDefinition  Height="35"/>
+            <RowDefinition Height="267*"  />
 
 
         </Grid.RowDefinitions>
@@ -142,7 +142,7 @@
                 Background="#fccf03" Content="Сохранить " Height="25" Margin="0,0,90,95"/>
 
 
-        <StackPanel  Grid.Row="0"   Grid.Column="3" Margin="0,0,0,35" Grid.RowSpan="2"
+        <StackPanel  Grid.Row="0"   Grid.Column="3"
                   >
             <Button Background="#fccf03" Content="Сохранить запись" Click="Save"   Height="27"/>
             <Label Background="LightBlue" >
@@ -182,8 +182,8 @@
 
         <ListView  Background="LightBlue" ItemsSource="{Binding tbl2}" 
                   SelectedItem="{Binding item2}" x:Name="Pokaz" MinHeight="200"
-                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left"
-                  Width="444" Margin="-4,40,0,10" Grid.RowSpan="2">
+                   Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left"
+                  Width="444" Margin="-4,3,0,10">
             <ListView.View>
                 <GridView >
                     <GridViewColumn Header="День" Width="100" DisplayMemberBinding="{Binding Day}"/>
@@ -197,7 +197,7 @@
 
 
         <StackPanel Height="246"  VerticalAlignment="Top" 
-                     Grid.Row="1" Grid.Column="3" Margin="0,40,0,0" Grid.RowSpan="2" >
+                     Grid.Row="2" Grid.Column="3" Margin="0,3,0,0" >
 
             <Button Background="#fccf03"  Margin="0,0,0,0"
                         x:Name="Repair2" Content="Редактировать запись"  Click="saved"/>
