@@ -105,7 +105,8 @@
                    Grid.Column="1"  
                     Grid.Row="3" Height="47" Width="180" >
             <ComboBox  x:Name="Combobox4"
-                       DisplayMemberPath="Day"  SelectedItem="{Binding SelectedDay2}" Margin="0,20,40,0" Width="140"/>
+                       DisplayMemberPath="Day" ItemsSource="{Binding Selected2}" 
+                       SelectedItem="{Binding SelectedDay2}" Margin="0,20,40,0" Width="140" Height="23"/>
 
         </StackPanel>
 

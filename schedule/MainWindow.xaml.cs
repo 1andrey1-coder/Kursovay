@@ -94,8 +94,9 @@ namespace schedule
 
 
             grud = new TblGroup();
+            
             grud = SelectedGroup;
-            grud = SelectedGroup2;
+           
 
             //вывод данных в таблицах и списках
 
@@ -145,7 +146,9 @@ namespace schedule
             {
                 var db = new ScheduleDbContext();
                 var result = db.TblScheduleDbs.Where(s => s.Name.Contains(searchText2));
-                TblScheduleDb = result.ToList();  
+
+                //TblScheduleDb = result.Where(s => s.Groupid == SelectedGroup2.GroupId).ToList();
+                TblScheduleDb = result.ToList();
                 //TblScheduleDb = result.ToList();
                 Signal(nameof(TblScheduleDb));
               
@@ -189,6 +192,8 @@ namespace schedule
            
 
             SelectedGroup = Group.FirstOrDefault();
+            SelectedGroup2 = Group.FirstOrDefault();
+            SelectedDay2 = Day.FirstOrDefault();
         }
 
 
@@ -222,8 +227,8 @@ namespace schedule
             {
                 using (var db = new ScheduleDbContext())
                 {
-                   
-                    Replacement = db.TblReplacements.ToList();
+                    Replacement = db.TblReplacements.Where(s=>s.WeekdaysId==SelectedDay2.Id).ToList();
+                    //Replacement = db.TblReplacements.ToList();
                     db.SaveChanges();
                 }
             }
