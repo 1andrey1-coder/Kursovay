@@ -215,6 +215,7 @@ namespace schedule
                     //var entity = new TblReplacement() { Name = "Name" };
                     //var existingEntity = db.TblReplacements.FirstOrDefault(x => x.Name == entity.Name);
 
+
                     var existingItems = db.TblReplacements.Where
                         (s => s.Name == s.Name && s.Group == s.Group && s.Group != SelectedDay.Id).ToList();
                     if (existingItems.Any())
