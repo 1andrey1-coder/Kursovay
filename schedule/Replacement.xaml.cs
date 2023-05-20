@@ -210,14 +210,21 @@ namespace schedule
                     kreating = Visibility.Visible;
                     Fill(nameof(tReplacements));
 
+                    var entity = new TblReplacement() { Name = "Name" };
+                    var existingEntity = db.TblReplacements.FirstOrDefault(x => x.Name == entity.Name);
+                    if(existingEntity != null)
+                    {
+                        replacement.WeekdaysId = SelectedDay.Id;
+                        db.TblReplacements.Add(replacement);
+                        db.SaveChanges();
+                        tbl_replacement = DB.GetInstance().TblReplacements.Where(s => s.WeekdaysId == SelectedDay.Id).ToList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Такая запись есть");
+                    }
 
-
-                    replacement.WeekdaysId = SelectedDay.Id;
-                    db.TblReplacements.Add(replacement);
-                 
-
-                    db.SaveChanges();
-                    tbl_replacement = DB.GetInstance().TblReplacements.Where(s => s.WeekdaysId == SelectedDay.Id).ToList();
+                   
                     //tbl_replacement = db.TblReplacements.Where(s => s.Id == SelectedDay.Id).ToList();
 
                     //DB.GetInstance().TblReplacements.Update(Selected);
