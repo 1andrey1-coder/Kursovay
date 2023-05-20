@@ -109,7 +109,7 @@ INSERT INTO schedule_db.tbl_speciality(specialityID, speciality) VALUES
 
 
 INSERT INTO schedule_db.tbl_weekdays(id, Day) VALUES
-(1, 'Понедельник \r\n'),
+(1, 'Понедельник'),
 (2, 'Вторник'),
 (3, 'Среда'),
 (4, 'Четверг'),

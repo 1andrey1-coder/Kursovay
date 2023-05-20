@@ -142,17 +142,17 @@ namespace schedule
             //    var SelectedGroup2 = Combobox2.SelectedItem as TblGroup;
             //Combobox2.SelectedItem != SelectedGroup2
 
-            if (Combobox2.SelectedItem == SelectedGroup2)
-            {
+           
                 var db = new ScheduleDbContext();
                 var result = db.TblScheduleDbs.Where(s => s.Name.Contains(searchText2));
-
+            if (SelectedGroup2 != null && SelectedGroup2.GroupId != 0)
+                result = result.Where(s => s.Groupid == SelectedGroup2.GroupId);
                 //TblScheduleDb = result.Where(s => s.Groupid == SelectedGroup2.GroupId).ToList();
                 TblScheduleDb = result.ToList();
                 //TblScheduleDb = result.ToList();
                 Signal(nameof(TblScheduleDb));
 
-            }
+            
             //    //else
             //    //{
 

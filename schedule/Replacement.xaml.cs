@@ -269,7 +269,7 @@ namespace schedule
         {
 
             DB.GetInstance().SaveChanges();
-            tbl_replacement = DB.GetInstance().TblReplacements.Where(s => s.WeekdaysId == SelectedDay.Id).ToList();
+            //tbl_replacement = DB.GetInstance().TblReplacements.Where(s => s.WeekdaysId == SelectedDay.Id).ToList();
 
 
         }
