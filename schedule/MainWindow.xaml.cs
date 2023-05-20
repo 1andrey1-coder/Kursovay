@@ -131,6 +131,8 @@ namespace schedule
             var result = db.TblReplacements.Where(s =>
                     s.Name.Contains(searchText) /*||*/
                 );
+            if (SelectedDay2 != null && SelectedDay2.Id != 0)
+                result = result.Where(s => s.WeekdaysId == SelectedDay2.Id);
             Replacement = result.ToList();
             Signal(nameof(Replacement));
          
@@ -145,7 +147,8 @@ namespace schedule
            
                 var db = new ScheduleDbContext();
                 var result = db.TblScheduleDbs.Where(s => s.Name.Contains(searchText2));
-            if (SelectedGroup2 != null && SelectedGroup2.GroupId != 0)
+
+                if (SelectedGroup2 != null && SelectedGroup2.GroupId != 0)
                 result = result.Where(s => s.Groupid == SelectedGroup2.GroupId);
                 //TblScheduleDb = result.Where(s => s.Groupid == SelectedGroup2.GroupId).ToList();
                 TblScheduleDb = result.ToList();
