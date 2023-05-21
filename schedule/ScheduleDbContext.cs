@@ -41,7 +41,7 @@ public partial class ScheduleDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("host=localhost;userid=root;password=Myl1ttledvmk3003@;database=schedule_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.32-mysql"));
+        => optionsBuilder.UseMySql("host=localhost;userid=root;password=Myl1ttledvmk3003@;database=schedule_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -71,9 +71,7 @@ public partial class ScheduleDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity
-                .ToTable("tbl_day")
-                .UseCollation("utf8mb4_general_ci");
+            entity.ToTable("tbl_day");
 
             entity.HasIndex(e => e.PairId, "FK_tbl_day_tbl_pairs_Id");
 
@@ -88,9 +86,7 @@ public partial class ScheduleDbContext : DbContext
         {
             entity.HasKey(e => e.GroupId).HasName("PRIMARY");
 
-            entity
-                .ToTable("tbl_group")
-                .UseCollation("utf8mb4_general_ci");
+            entity.ToTable("tbl_group");
 
             entity.HasIndex(e => e.SemestrNuberId, "FK_tbl_group");
 
@@ -125,9 +121,7 @@ public partial class ScheduleDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity
-                .ToTable("tbl_pairs")
-                .UseCollation("utf8mb4_general_ci");
+            entity.ToTable("tbl_pairs");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
         });
@@ -155,6 +149,7 @@ public partial class ScheduleDbContext : DbContext
 
             entity.HasIndex(e => e.WeekdaysId, "FK_tbl_replacement");
 
+            entity.Property(e => e.Date).HasColumnType("datetime");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''");
@@ -196,9 +191,7 @@ public partial class ScheduleDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity
-                .ToTable("tbl_semester")
-                .UseCollation("utf8mb4_general_ci");
+            entity.ToTable("tbl_semester");
 
             entity.HasIndex(e => e.SpecialityId, "FK_tbl_predmetid_tbl_speciality_specialityID");
 
@@ -234,9 +227,7 @@ public partial class ScheduleDbContext : DbContext
         {
             entity.HasKey(e => e.SpecialityId).HasName("PRIMARY");
 
-            entity
-                .ToTable("tbl_speciality")
-                .UseCollation("utf8mb4_general_ci");
+            entity.ToTable("tbl_speciality");
 
             entity.Property(e => e.SpecialityId).HasColumnName("specialityID");
             entity.Property(e => e.Speciality)

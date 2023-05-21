@@ -19,5 +19,7 @@ public partial class TblReplacement
 
     public int? WeekdaysId { get; set; }
 
+    public DateTime? Date { get; set; }
+
     public virtual TblWeekday? Weekdays { get; set; }
 }

@@ -33,10 +33,12 @@
             </Style.Resources>
         </Style>
 
-
     </Window.Resources>
-
+    
     <Grid>
+
+        
+
 
         <Grid.RowDefinitions>
             <RowDefinition Height="29"/>
@@ -50,6 +52,7 @@
             <ColumnDefinition Width="646" />
             <ColumnDefinition  />
         </Grid.ColumnDefinitions>
+            
         <StackPanel Height="24" VerticalAlignment="Center"
                     Grid.Column="0"  Grid.Row="1" Orientation="Horizontal" Margin="0,0,2,0">
             <ComboBox Background="Azure"  
@@ -71,6 +74,8 @@
                        HorizontalAlignment="Left" DockPanel.Dock="Top"  />
             <TextBox  DockPanel.Dock="Top" Width="200" HorizontalAlignment="Left" Text="{Binding SearchText,
                 UpdateSourceTrigger=PropertyChanged}"  x:Name="txtFilter2" />
+        
+
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1
@@ -165,5 +170,20 @@
         <Image Grid.Row="2" Height="150" 
                Width="150" VerticalAlignment="Center" HorizontalAlignment="Center"
                Source="Картинки\Без названия-PhotoRoom.png-PhotoRoom.png" />
+
+        <StackPanel Grid.Row="3">
+            <TextBlock FontSize="15" Text="Выбрать дату:"/>
+            <DatePicker 
+            SelectedDate="{Binding SelectedDate1}"
+                  FontFamily="35" FontSize="15"/>
+            <Button Content="Показать список по дате " Click="click"/>
+            <ListView  Height="150" ItemsSource="{Binding Replacement2}" >
+                <ListView.View  >
+                    <GridView >
+                        <GridViewColumn Width="100"   Header="Дата" DisplayMemberBinding="{Binding Date}"/>
+                     </GridView >
+                </ListView.View  >
+            </ListView    >
+        </StackPanel>
     </Grid>
 </Window>

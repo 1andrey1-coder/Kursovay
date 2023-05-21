@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -29,6 +30,8 @@ namespace schedule
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public TblGroup SelectedGroup { get; set; }
+        public TblReplacement SelectedDate1 { get; set; }
+
 
         public TblGroup SelectedGroup2 { get => selectedGroup2;
             set { selectedGroup2 = value;
@@ -46,6 +49,8 @@ namespace schedule
         public List<TblReplacement> Replacement { get => replacement1; set { replacement1 = value; Fill();  } }
         private List<TblReplacement> replacement1;
 
+        public List<TblReplacement> Replacement2 { get => replacement12; set { replacement12 = value; Fill(); } }
+        private List<TblReplacement> replacement12;
 
         //таблица 2
         public List<TblGroup> Group2 { get; set; }
@@ -80,6 +85,7 @@ namespace schedule
 
             Day = DB.GetInstance().TblWeekdays.ToList();
             Replacement = DB.GetInstance().TblReplacements.ToList();
+            Replacement2 = DB.GetInstance().TblReplacements.ToList();
             TblScheduleDb = DB.GetInstance().TblScheduleDbs.ToList();
             //TblScheduleDb = DB.GetInstance().TblScheduleDbs.Where(s => s.Id == SelectedGroup2.GroupId).ToList();
             //listschedule2.ItemsSource = Replacement;
@@ -263,5 +269,38 @@ namespace schedule
         {
             TblScheduleDb = DB.GetInstance().TblScheduleDbs.ToList();
         }
+
+        private void click(object sender, RoutedEventArgs e)
+        {
+            using(var db = new ScheduleDbContext())
+            {
+                DateTime SelectedDate1 = DateTime.Now;
+                Replacement2  = db.TblReplacements.Where(s=>s.Date == SelectedDate1.Date).ToList();
+                //Replacement2 = DB.GetInstance().TblReplacements.ToList();
+            }
+        }
+
+
+        //дата
+
+        //private DateTime selectedDate;
+        //public DateTime SelectedDate
+        //{
+        //    get { return selectedDate; }
+        //    set
+        //    {
+        //        selectedDate = value;
+        //        LoadItems();
+        //    }
+        //}
+        //private void LoadItems()
+        //{
+        //    var db = new ScheduleDbContext();
+        //    var items = db.TblReplacements.Where(s => s.Date == selectedDate).ToList();
+        //}
+
+
+
+
     }
 }
