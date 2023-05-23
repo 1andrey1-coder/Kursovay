@@ -30,7 +30,8 @@ namespace schedule
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public TblGroup SelectedGroup { get; set; }
-        public TblReplacement SelectedDate1 { get; set; }
+        public DateTime SelectedDate1 { get; set; }
+        public DateTime Today { get; set; }
 
 
         public TblGroup SelectedGroup2 { get => selectedGroup2;
@@ -80,6 +81,10 @@ namespace schedule
             Search2();
 
             //поиск
+
+            Today = DateTime.Now;
+            SelectedDate1 = DateTime.Now;
+
 
             //вывод данных в таблицах и списках
 
@@ -274,7 +279,7 @@ namespace schedule
         {
             using(var db = new ScheduleDbContext())
             {
-                DateTime SelectedDate1 = DateTime.Today;
+                //DateTime SelectedDate1 = DateTime.Today;
                 Replacement2  = db.TblReplacements.Where(s=>s.Date == SelectedDate1.Date).ToList();
                 //Replacement2 = DB.GetInstance().TblReplacements.ToList();
             }

@@ -174,7 +174,7 @@
         <StackPanel Grid.Row="3">
             <TextBlock FontSize="15" Text="Выбрать дату:"/>
             <DatePicker 
-            SelectedDate="{Binding SelectedDate1}"
+            SelectedDate="{Binding SelectedDate1}" DisplayDateStart="{Binding Today}"
                   FontFamily="35" FontSize="15"/>
             <Button Content="Показать список по дате " Click="click"/>
             <ListView  Height="150" ItemsSource="{Binding Replacement2}" >
