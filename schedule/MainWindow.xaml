@@ -171,6 +171,9 @@
                Width="150" VerticalAlignment="Center" HorizontalAlignment="Center"
                Source="Картинки\Без названия-PhotoRoom.png-PhotoRoom.png" />
 
+
+ 
+
         <StackPanel Grid.Row="3">
             <TextBlock FontSize="15" Text="Выбрать дату:"/>
             <DatePicker  x:Name="calendar"

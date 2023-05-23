@@ -31,6 +31,7 @@ namespace schedule
     {
         public TblGroup SelectedGroup { get; set; }
         public DateTime SelectedDate1 { get; set; }
+        public TblWeekday SelectedDate2 { get; set; }
         //public DateTime Today { get; set; }
 
 
@@ -84,6 +85,7 @@ namespace schedule
 
             //Today = DateTime.Now;
             SelectedDate1 = DateTime.Now;
+
 
 
             //вывод данных в таблицах и списках
@@ -279,8 +281,8 @@ namespace schedule
         {
             using(var db = new ScheduleDbContext())
             {
-                DayOfWeek selectedDayOfWeek = (DayOfWeek)Combobox4.SelectedValue;
-                DayOfWeek currentDayOfWeek = SelectedDate1.DayOfWeek;
+                DayOfWeek selectedDayOfWeek = calendar.FirstDayOfWeek;
+                DayOfWeek currentDayOfWeek = SelectedDate2.Id;
                 if (selectedDayOfWeek == currentDayOfWeek)
                 {
 
