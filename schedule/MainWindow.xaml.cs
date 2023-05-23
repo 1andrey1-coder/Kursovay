@@ -31,7 +31,7 @@ namespace schedule
     {
         public TblGroup SelectedGroup { get; set; }
         public DateTime SelectedDate1 { get; set; }
-        public DateTime Today { get; set; }
+        //public DateTime Today { get; set; }
 
 
         public TblGroup SelectedGroup2 { get => selectedGroup2;
@@ -82,7 +82,7 @@ namespace schedule
 
             //поиск
 
-            Today = DateTime.Now;
+            //Today = DateTime.Now;
             SelectedDate1 = DateTime.Now;
 
 
@@ -279,31 +279,31 @@ namespace schedule
         {
             using(var db = new ScheduleDbContext())
             {
+                DayOfWeek selectedDayOfWeek = (DayOfWeek)Combobox4.SelectedValue;
+                DayOfWeek currentDayOfWeek = SelectedDate1.DayOfWeek;
+                if (selectedDayOfWeek == currentDayOfWeek)
+                {
+
+                    Replacement2 = db.TblReplacements.Where(s => s.Date == SelectedDate1.Date).ToList();
+                }
+                else
+                {
+                    MessageBox.Show("Проверьте выбраный день");
+                }
+
+                //Replacement2  = db.TblReplacements.Where(s=>s.Date == SelectedDate1.Date).ToList();
+
+
                 //DateTime SelectedDate1 = DateTime.Today;
-                Replacement2  = db.TblReplacements.Where(s=>s.Date == SelectedDate1.Date).ToList();
                 //Replacement2 = DB.GetInstance().TblReplacements.ToList();
             }
         }
-
-
-        //дата
-
-        //private DateTime selectedDate;
-        //public DateTime SelectedDate
-        //{
-        //    get { return selectedDate; }
-        //    set
-        //    {
-        //        selectedDate = value;
-        //        LoadItems();
-        //    }
-        //}
-        //private void LoadItems()
-        //{
-        //    var db = new ScheduleDbContext();
-        //    var items = db.TblReplacements.Where(s => s.Date == selectedDate).ToList();
-        //}
-
+        
+            //MyCombobox4_SelectionChanged
+        private void Day1(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
 
 
 

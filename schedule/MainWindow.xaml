@@ -109,7 +109,7 @@
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" 
                    Grid.Column="1"  
                     Grid.Row="3" Height="47" Width="180" >
-            <ComboBox  x:Name="Combobox4"
+            <ComboBox  x:Name="Combobox4" SelectedIndex="{Binding Day1}"
                        DisplayMemberPath="Day" ItemsSource="{Binding Selected2}" 
                        SelectedItem="{Binding SelectedDay2}" Margin="0,20,40,0" Width="140" Height="23"/>
             
@@ -173,8 +173,8 @@
 
         <StackPanel Grid.Row="3">
             <TextBlock FontSize="15" Text="Выбрать дату:"/>
-            <DatePicker 
-            SelectedDate="{Binding SelectedDate1}" DisplayDateStart="{Binding Today}"
+            <DatePicker  x:Name="calendar"
+            SelectedDate="{Binding SelectedDate1}" 
                   FontFamily="35" FontSize="15"/>
             <Button Content="Показать список по дате " Click="click"/>
             <ListView  Height="150" ItemsSource="{Binding Replacement2}" >
@@ -185,5 +185,6 @@
                 </ListView.View  >
             </ListView    >
         </StackPanel>
+       
     </Grid>
 </Window>
