@@ -282,7 +282,7 @@ namespace schedule
             using(var db = new ScheduleDbContext())
             {
                 DayOfWeek selectedDayOfWeek = calendar.FirstDayOfWeek;
-                DayOfWeek currentDayOfWeek = SelectedDate2.Id;
+                DayOfWeek currentDayOfWeek = SelectedDate1.DayOfWeek;
                 if (selectedDayOfWeek == currentDayOfWeek)
                 {
 
