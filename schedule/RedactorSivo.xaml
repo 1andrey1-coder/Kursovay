@@ -78,10 +78,10 @@
         </StackPanel>
 
 
-
         <DataGrid Grid.Row="0" Grid.Column="2" Height="130" Margin="5,5,10,0"
                   VerticalAlignment="Top" DataContext="{Binding DataGrid1}">
             <DataGrid.Columns>
+
                 <DataGridTextColumn  Header="Предмет"/>
                 <DataGridTextColumn  Header="Часы"/>
                 <DataGridTextColumn  Header="Кол-во пар"/>

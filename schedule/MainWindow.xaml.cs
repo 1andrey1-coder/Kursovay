@@ -283,17 +283,17 @@ namespace schedule
             {
 
 
-                var pip = SelectedDate1.WeekdaysId;
-                var pop = SelectedDate2.Id;
-                if (pop == pip)
-                {
-                    Replacement2 = db.TblReplacements.Where(s => s.Date == SelectedDate1.Date).ToList();
+                //DateTime pip = SelectedDate1.Date;
+                //var pop = SelectedDate2.Id;
+                //if (pip == pop)
+                //{
+                //    Replacement2 = db.TblReplacements.Where(s => s.Date == SelectedDate1.Date).ToList();
 
-                }
-                else
-                {
-                    MessageBox.Show("Проверьте выбраный день");
-                }
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Проверьте выбраный день");
+                //}
 
                 //DayOfWeek selectedDayOfWeek = SelectedDate1.Date;
                 //DayOfWeek currentDayOfWeek = SelectedDate2.Day;
