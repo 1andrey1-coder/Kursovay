@@ -88,7 +88,7 @@ namespace schedule
 
 
 
-            //вывод данных в таблицах и списках
+            //вывод данных в таблицах и спискахИзначально это исключение 
 
             Day = DB.GetInstance().TblWeekdays.ToList();
             Replacement = DB.GetInstance().TblReplacements.ToList();
@@ -281,17 +281,19 @@ namespace schedule
         {
             using(var db = new ScheduleDbContext())
             {
-                //DateOnly? pip = SelectedDate1.Date;
-                //DateOnly? pop = SelectedDate2.Day;
-                //if (pip == pop)
-                //{
-                //    Replacement2 = db.TblReplacements.Where(s => s.Date == SelectedDate1.Date).ToList();
 
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Проверьте выбраный день");
-                //}
+
+                var pip = SelectedDate1.WeekdaysId;
+                var pop = SelectedDate2.Id;
+                if (pop == pip)
+                {
+                    Replacement2 = db.TblReplacements.Where(s => s.Date == SelectedDate1.Date).ToList();
+
+                }
+                else
+                {
+                    MessageBox.Show("Проверьте выбраный день");
+                }
 
                 //DayOfWeek selectedDayOfWeek = SelectedDate1.Date;
                 //DayOfWeek currentDayOfWeek = SelectedDate2.Day;

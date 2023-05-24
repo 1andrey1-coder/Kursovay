@@ -26,9 +26,9 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="262*"  />
-            <RowDefinition  Height="35"/>
-            <RowDefinition Height="267*"  />
+            <RowDefinition Height="131*"  />
+            <RowDefinition  Height="48"/>
+            <RowDefinition Height="127*"  />
 
 
         </Grid.RowDefinitions>
@@ -38,7 +38,7 @@
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="47"/>
             <ColumnDefinition Width="250"  />
-            <ColumnDefinition Width="146"/>
+            <ColumnDefinition Width="159"/>
             <ColumnDefinition />
 
 
@@ -79,67 +79,19 @@
 
 
 
+        <DataGrid Grid.Row="0" Grid.Column="2" Height="130" Margin="5,5,10,0"
+                  VerticalAlignment="Top" DataContext="{Binding DataGrid1}">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="Предмет"/>
+                <DataGridTextColumn  Header="Часы"/>
+                <DataGridTextColumn  Header="Кол-во пар"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
 
-
-        <StackPanel Orientation="Horizontal" Height="30 " VerticalAlignment="Top" Grid.Column="2" Width="246" HorizontalAlignment="Center">
-            <Label  Background="DeepSkyBlue" Width="80" Content="Предмет"/>
-
-            <Label  Background="DeepSkyBlue" Width="80" Content="Часы"/>
-            <Label   Background="DeepSkyBlue"   Content="Кол-во пар" Width="85"/>
-
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="2"
-                    Width="250"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="194" >
-
-
-            <!--Предмет-->
-            <StackPanel Width="80">
-                <TextBox />
-                <TextBox />
-                <TextBox />
-                <TextBox />
-                <TextBox />
-                <TextBox />
-            </StackPanel>
-
-
-
-            <!--Предмет-->
-
-            <!--Часы-->
-            <StackPanel Width="80">
-                <TextBox  />
-                <TextBox />
-                <TextBox />
-                <TextBox />
-                <TextBox />
-                <TextBox />
-            </StackPanel>
-
-
-            <!--Часы-->
-
-
-
-            <!--Кол-во пар-->
-            <StackPanel Width="80">
-                <TextBlock Height="18" />
-                <TextBlock Height="18" />
-                <TextBlock Height="18" />
-                <TextBlock Height="18" />
-                <TextBlock Height="18" />
-                <TextBlock Height="17" />
-            </StackPanel>
-
-
-
-            <!--Кол-во пар-->
-
-        </StackPanel>
+       
         <Button Grid.Column="2" VerticalAlignment="Bottom" 
-                Background="#fccf03" Content="Сохранить " Height="25" Margin="0,0,90,95"/>
+                Background="#fccf03" Content="Сохранить " Height="25" Margin="0,0,90,75"/>
 
 
         <StackPanel  Grid.Row="0"   Grid.Column="3"
@@ -196,10 +148,10 @@
         </ListView>
 
 
-        <StackPanel Height="246"  VerticalAlignment="Top" 
+        <StackPanel Height="250"  VerticalAlignment="Top" 
                      Grid.Row="2" Grid.Column="3" Margin="0,3,0,0" >
 
-            <Button Background="#fccf03"  Margin="0,0,0,0"
+            <Button Background="#fccf03" Height="30"  Margin="0,0,0,0"
                         x:Name="Repair2" Content="Редактировать запись"  Click="saved"/>
 
             <Label  Background="LightBlue">
