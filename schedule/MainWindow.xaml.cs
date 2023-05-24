@@ -281,24 +281,24 @@ namespace schedule
         {
             using(var db = new ScheduleDbContext())
             {
-                DateOnly? pip = SelectedDate1.Date;
-                DateOnly? pop = SelectedDate2.Day;
-                if (pip == pop)
-                {
-                    Replacement2 = db.TblReplacements.Where(s => s.Date == SelectedDate1.Date).ToList();
+                //DateOnly? pip = SelectedDate1.Date;
+                //DateOnly? pop = SelectedDate2.Day;
+                //if (pip == pop)
+                //{
+                //    Replacement2 = db.TblReplacements.Where(s => s.Date == SelectedDate1.Date).ToList();
 
-                }
-                else
-                {
-                    MessageBox.Show("Проверьте выбраный день");
-                }
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Проверьте выбраный день");
+                //}
 
-                //DayOfWeek selectedDayOfWeek = calendar.FirstDayOfWeek;
-                //DayOfWeek currentDayOfWeek = SelectedDate1.DayOfWeek;
+                //DayOfWeek selectedDayOfWeek = SelectedDate1.Date;
+                //DayOfWeek currentDayOfWeek = SelectedDate2.Day;
                 //if (selectedDayOfWeek == currentDayOfWeek)
                 //{
-
-                //    Replacement2 = db.TblReplacements.Where(s => s.WeekdaysId == SelectedDate2.Id).ToList();
+                //    //Replacement2 = db.TblReplacements.ToList();
+                //    Replacement2 = db.TblReplacements.Where(s => s.WeekdaysId == SelectedDate1.).ToList();
                 //}
                 //else
                 //{

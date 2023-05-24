@@ -227,8 +227,8 @@ namespace schedule
                     //else
                     //{
                         replacement.WeekdaysId = SelectedDay.Id;
-                        //replacement.Date = DateOnly.;
-                        db.TblReplacements.Add(replacement);
+                        replacement.Date = DateTime.Now;
+                    db.TblReplacements.Add(replacement);
                         db.SaveChanges();
                         tbl_replacement = DB.GetInstance().TblReplacements.Where(s => s.WeekdaysId == SelectedDay.Id).ToList();
 
@@ -241,7 +241,7 @@ namespace schedule
                     ////tbl_replacement = DB.GetInstance().TblReplacements.ToList();
                     ///
                
-                    replacement = new TblReplacement { Date = DateTime.Now};
+                    replacement = new TblReplacement { Date = DateTime.Now } /*{ Date = DateTime.Now}*/;
 
                 }
             }
