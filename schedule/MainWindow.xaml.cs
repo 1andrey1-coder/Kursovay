@@ -30,7 +30,7 @@ namespace schedule
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public TblGroup SelectedGroup { get; set; }
-        public DateTime SelectedDate1 { get; set; }
+        public TblReplacement SelectedDate1 { get; set; }
         public TblWeekday SelectedDate2 { get; set; }
         //public DateTime Today { get; set; }
 
@@ -84,7 +84,7 @@ namespace schedule
             //поиск
 
             //Today = DateTime.Now;
-            SelectedDate1 = DateTime.Now;
+            //SelectedDate1 = DateTime.Now;
 
 
 
@@ -281,17 +281,29 @@ namespace schedule
         {
             using(var db = new ScheduleDbContext())
             {
-                DayOfWeek selectedDayOfWeek = calendar.FirstDayOfWeek;
-                DayOfWeek currentDayOfWeek = SelectedDate1.DayOfWeek;
-                if (selectedDayOfWeek == currentDayOfWeek)
+                DateOnly? pip = SelectedDate1.Date;
+                DateOnly? pop = SelectedDate2.Day;
+                if (pip == pop)
                 {
-
                     Replacement2 = db.TblReplacements.Where(s => s.Date == SelectedDate1.Date).ToList();
+
                 }
                 else
                 {
                     MessageBox.Show("Проверьте выбраный день");
                 }
+
+                //DayOfWeek selectedDayOfWeek = calendar.FirstDayOfWeek;
+                //DayOfWeek currentDayOfWeek = SelectedDate1.DayOfWeek;
+                //if (selectedDayOfWeek == currentDayOfWeek)
+                //{
+
+                //    Replacement2 = db.TblReplacements.Where(s => s.WeekdaysId == SelectedDate2.Id).ToList();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Проверьте выбраный день");
+                //}
 
                 //Replacement2  = db.TblReplacements.Where(s=>s.Date == SelectedDate1.Date).ToList();
 
