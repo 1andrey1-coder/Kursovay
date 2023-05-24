@@ -227,7 +227,7 @@ namespace schedule
                     //else
                     //{
                         replacement.WeekdaysId = SelectedDay.Id;
-                        replacement.Date = DayOfWeek.Monday;
+                        //replacement.Date = DateOnly.;
                         db.TblReplacements.Add(replacement);
                         db.SaveChanges();
                         tbl_replacement = DB.GetInstance().TblReplacements.Where(s => s.WeekdaysId == SelectedDay.Id).ToList();
