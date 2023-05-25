@@ -98,7 +98,11 @@ namespace schedule
             //listschedule2.ItemsSource = Replacement;
 
             FillGroup();
-            var user = DB.GetInstance().TblGroups.Include(s => s.SemestrNuber).Include(s => s.SemestrWeek);
+            var user = DB.GetInstance().TblGroups.Include
+                (s => s.SemestrNuber).Include
+                (s => s.SemestrWeek).Include
+                (s => s.CourseId);
+
             Group = DB.GetInstance().TblGroups.ToList();
             Group2 = DB.GetInstance().TblGroups.ToList();
             Combobox.ItemsSource = Group;
@@ -107,7 +111,6 @@ namespace schedule
 
 
             grud = new TblGroup();
-            
             grud = SelectedGroup;
            
 

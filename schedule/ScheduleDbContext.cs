@@ -23,6 +23,8 @@ public partial class ScheduleDbContext : DbContext
 
     public virtual DbSet<TblGroup> TblGroups { get; set; }
 
+    public virtual DbSet<TblObpred> TblObpreds { get; set; }
+
     public virtual DbSet<TblPair> TblPairs { get; set; }
 
     public virtual DbSet<TblPredmet> TblPredmets { get; set; }
@@ -65,6 +67,8 @@ public partial class ScheduleDbContext : DbContext
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity.ToTable("tbl_course");
+
+            entity.HasIndex(e => e.Course, "FK_tbl_course");
 
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
@@ -137,6 +141,29 @@ public partial class ScheduleDbContext : DbContext
             entity.HasOne(d => d.Speciality).WithMany(p => p.TblGroups).HasForeignKey(d => d.SpecialityId);
         });
 
+        modelBuilder.Entity<TblObpred>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("tbl_obpred");
+
+            entity.HasIndex(e => e.CourseId, "FK_tbl_obpred_tbl_course_id");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.CourseId)
+                .HasColumnType("int(11)")
+                .HasColumnName("courseID");
+            entity.Property(e => e.Predmet)
+                .HasMaxLength(255)
+                .HasColumnName("predmet");
+
+            entity.HasOne(d => d.Course).WithMany(p => p.TblObpreds)
+                .HasForeignKey(d => d.CourseId)
+                .HasConstraintName("FK_tbl_obpred_tbl_course_id");
+        });
+
         modelBuilder.Entity<TblPair>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -178,6 +205,7 @@ public partial class ScheduleDbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.Cabinet).HasColumnType("int(11)");
+            entity.Property(e => e.Date).HasColumnType("datetime");
             entity.Property(e => e.Group).HasColumnType("int(11)");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
@@ -213,8 +241,7 @@ public partial class ScheduleDbContext : DbContext
             entity.Property(e => e.Groupid).HasColumnType("int(11)");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
-                .HasDefaultValueSql("''")
-                .UseCollation("utf8mb4_unicode_ci");
+                .HasDefaultValueSql("''");
             entity.Property(e => e.Pair).HasColumnType("int(11)");
             entity.Property(e => e.Predmet)
                 .HasMaxLength(255)
@@ -254,9 +281,9 @@ public partial class ScheduleDbContext : DbContext
 
             entity.ToTable("tbl_semestr");
 
-            entity.HasIndex(e => e.CourseId, "FK_tbl_semestr_tbl_course_id");
-
             entity.HasIndex(e => e.SemesterNuber, "FK_tbl_semestr_tbl_group_GroupID");
+
+            entity.HasIndex(e => e.CourseId, "FK_tbl_semestr_tbl_obpred_id");
 
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")

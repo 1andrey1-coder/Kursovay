@@ -78,13 +78,12 @@
         </StackPanel>
 
 
-        <DataGrid Grid.Row="0" Grid.Column="2" Height="130" Margin="5,5,10,0"
-                  VerticalAlignment="Top" DataContext="{Binding DataGrid1}">
+        <DataGrid x:Name="Datagrid" Grid.Row="0" Grid.Column="2" Height="130" Margin="5,5,10,0"
+                  VerticalAlignment="Top" ItemsSource="{Binding DataGrid1}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-
-                <DataGridTextColumn  Header="Предмет"/>
-                <DataGridTextColumn  Header="Часы"/>
-                <DataGridTextColumn  Header="Кол-во пар"/>
+                <DataGridTextColumn Width="100"  Header="Предмет" Binding="{Binding grud.Course.TblObpreds.Predmet}"/>
+                <!--<DataGridTextColumn Width="50" Header="Часы" Binding="{Binding Hours}"/>-->
+                <!--<DataGridTextColumn  Header="Кол-во пар" Binding="{Binding Pair}"/>-->
             </DataGrid.Columns>
         </DataGrid>
 
@@ -188,7 +187,7 @@
                      >
 
             <!--<Button  Background="#fccf03" Content="Обновить таблицу" Click="OBN" Width="125"  />-->
-            <Button  Background="#fccf03" Content="Удалить запись с таблицы" Click="Delite" Width="191" />
+            <Button  Background="#fccf03" Content="Удалить запись с таблицы" Click="Delite" Height="35" Width="191" />
 
         </StackPanel>
         <Label  Grid.Column="0" Grid.ColumnSpan="2" 

@@ -48,6 +48,9 @@ namespace schedule
 
         public DbSet<Pair1> pairs { get; set; }
 
+        public List<TblGroup> DataGrid1 { get; set; }
+
+
         public RedactorSivo(TblGroup selectedGroup)
         {
             InitializeComponent();
@@ -58,6 +61,7 @@ namespace schedule
             grud = new TblGroup();
             grud = selectedGroup;
             tbl2 = DB.GetInstance().TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
+            //DataGrid1 = DB.GetInstance().TblGroups.Where(s => s.CourseId == SelectedGroup.CourseId).ToList();
         }
 
 
