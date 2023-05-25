@@ -150,5 +150,10 @@ namespace schedule
         {
             DB.GetInstance().SaveChanges();
         }
+
+        private void Day_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

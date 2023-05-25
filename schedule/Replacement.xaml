@@ -105,7 +105,7 @@
                 <TextBox  Text="{Binding Path=Predmet}"/>
                 <TextBlock Text="Аудитория"/>
                 <TextBox  Text="{Binding Path=Cabinet}"/>
-                <TextBlock Text="Препод"/>
+                <TextBlock Text="Преподователь"/>
                 <TextBox  Text="{Binding Path=Name}"/>
                 <Button  Background="#fccf03"  x:Name="Repair"
                          HorizontalAlignment="Center" Content="Редактировать" 
@@ -127,7 +127,7 @@
                     <TextBox x:Name="Predmet"  Text="{Binding Predmet}"/>
                     <TextBlock Text="Аудитория"/>
                     <TextBox x:Name="Cabinet"  Text="{Binding Cabinet}"/>
-                    <TextBlock Text="Препод"/>
+                    <TextBlock Text="Преподователь"/>
                     <TextBox x:Name="Name"  Text="{Binding Name}"/>
 
                     <Button   Background="#fccf03"

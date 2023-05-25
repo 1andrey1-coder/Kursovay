@@ -37,8 +37,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="47"/>
-            <ColumnDefinition Width="250"  />
-            <ColumnDefinition Width="159"/>
+            <ColumnDefinition Width="265"  />
+            <ColumnDefinition Width="144"/>
             <ColumnDefinition />
 
 
@@ -89,7 +89,7 @@
         </DataGrid>
 
 
-       
+
         <Button Grid.Column="2" VerticalAlignment="Bottom" 
                 Background="#fccf03" Content="Сохранить " Height="25" Margin="0,0,90,75"/>
 
@@ -101,8 +101,8 @@
                 <StackPanel DataContext="{Binding item1}">
 
                     <TextBlock Text="День"/>
-                    <TextBox x:Name="Day"  Text="{Binding Day}"  HorizontalAlignment="Left"  Width="100" />
-                    <TextBlock Text="Препод"/>
+                    <TextBox x:Name="Day"  Text="{Binding Day}"  HorizontalAlignment="Left"  Width="100" TextChanged="Day_TextChanged" />
+                    <TextBlock Text="Преподователь"/>
                     <TextBox x:Name="Name"  Text="{Binding Name}" HorizontalAlignment="Left" Width="100"/>
                     <TextBlock Text="Пара"/>
                     <TextBox x:Name="Pair" Text="{Binding Pair}"  HorizontalAlignment="Left" Width="100"/>
@@ -135,11 +135,11 @@
         <ListView  Background="LightBlue" ItemsSource="{Binding tbl2}" 
                   SelectedItem="{Binding item2}" x:Name="Pokaz" MinHeight="200"
                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left"
-                  Width="444" Margin="-4,3,0,10">
+                  Width="454" Margin="-4,3,0,10">
             <ListView.View>
                 <GridView >
                     <GridViewColumn Header="День" Width="100" DisplayMemberBinding="{Binding Day}"/>
-                    <GridViewColumn Header="Препод" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Преподователь" Width="120" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Пара" Width="50" DisplayMemberBinding="{Binding Pair}"/>
                     <GridViewColumn Header="Предмет" Width="100" DisplayMemberBinding="{Binding Predmet}"/>
                     <GridViewColumn Header="Аудитория" Width="75" DisplayMemberBinding="{Binding Cabinet}"/>
@@ -148,8 +148,8 @@
         </ListView>
 
 
-        <StackPanel Height="250"  VerticalAlignment="Top" 
-                     Grid.Row="2" Grid.Column="3" Margin="0,3,0,0" >
+        <StackPanel Height="250"  VerticalAlignment="Center" 
+                     Grid.Row="2" Grid.Column="3" >
 
             <Button Background="#fccf03" Height="30"  Margin="0,0,0,0"
                         x:Name="Repair2" Content="Редактировать запись"  Click="saved"/>
@@ -162,7 +162,7 @@
                     </Label>
                     <TextBlock Text="День"/>
                     <TextBox  Text="{Binding Path=Day}"/>
-                    <TextBlock Text="Препод"/>
+                    <TextBlock Text="Преподователь"/>
                     <TextBox  Text="{Binding Path=Name}"/>
                     <TextBlock Text="Пара"/>
                     <TextBox  Text="{Binding Path=Pair}"/>

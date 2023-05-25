@@ -130,7 +130,7 @@
                         <GridViewColumn  Header="Группа" Width="150" DisplayMemberBinding="{Binding Group}"/>
                         <GridViewColumn Header="Пара" Width="70" DisplayMemberBinding="{Binding Pair}"/>
                         <GridViewColumn Header="Аудитория" Width="100" DisplayMemberBinding="{Binding Cabinet}" />
-                        <GridViewColumn Header="Препод" Width="170" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Преподователь" Width="170" DisplayMemberBinding="{Binding Name}" />
                         <GridViewColumn Header="Предмет" Width="150" DisplayMemberBinding="{Binding Predmet}"/>
                     </GridView>
                 </ListView.View>
@@ -147,7 +147,7 @@
                         <GridViewColumn Header="День" Width="100" DisplayMemberBinding="{Binding Day}"/>
                         <GridViewColumn Header="Пара" Width="70" DisplayMemberBinding="{Binding Pair}"/>
                         <GridViewColumn Header="Аудитория" Width="100" DisplayMemberBinding="{Binding Cabinet}" />
-                        <GridViewColumn Header="Препод" Width="170" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Преподователь" Width="170" DisplayMemberBinding="{Binding Name}" />
                         <GridViewColumn Header="Предмет" Width="150" DisplayMemberBinding="{Binding Predmet}"/>
                     </GridView>
                 </ListView.View>
