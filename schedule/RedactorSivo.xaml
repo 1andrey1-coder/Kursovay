@@ -81,7 +81,7 @@
         <DataGrid x:Name="Datagrid" Grid.Row="0" Grid.Column="2" Height="130" Margin="5,5,10,0"
                   VerticalAlignment="Top" ItemsSource="{Binding DataGrid1}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="100"  Header="Предмет" Binding="{Binding grud.Course.TblObpreds.Predmet}"/>
+                <DataGridTextColumn Width="100"  Header="Предмет" Binding="{Binding Predmet}"/>
                 <!--<DataGridTextColumn Width="50" Header="Часы" Binding="{Binding Hours}"/>-->
                 <!--<DataGridTextColumn  Header="Кол-во пар" Binding="{Binding Pair}"/>-->
             </DataGrid.Columns>
@@ -91,6 +91,7 @@
 
         <Button Grid.Column="2" VerticalAlignment="Bottom" 
                 Background="#fccf03" Content="Сохранить " Height="25" Margin="0,0,90,75"/>
+       
 
 
         <StackPanel  Grid.Row="0"   Grid.Column="3"
