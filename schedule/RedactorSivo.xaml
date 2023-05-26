@@ -101,7 +101,10 @@
                 <StackPanel DataContext="{Binding item1}">
 
                     <TextBlock Text="День"/>
-                    <TextBox x:Name="Day"  Text="{Binding Day}"  HorizontalAlignment="Left"  Width="100" TextChanged="Day_TextChanged" />
+                    <ComboBox x:Name="Combobox5"
+                              DisplayMemberPath="Day" ItemsSource="{Binding Selected4}" 
+                              SelectedItem="{Binding SelectedDay}" 
+                             HorizontalAlignment="Left"  Width="100"  />
                     <TextBlock Text="Преподователь"/>
                     <TextBox x:Name="Name"  Text="{Binding Name}" HorizontalAlignment="Left" Width="100"/>
                     <TextBlock Text="Пара"/>

@@ -50,6 +50,8 @@ namespace schedule
 
         public List<TblObpred> DataGrid1 { get; set; }
 
+        public List<TblWeekday> Selected4 { get; set; }
+        public TblWeekday SelectedDay { get; set; }
 
         public RedactorSivo(TblGroup selectedGroup)
         {
@@ -63,6 +65,9 @@ namespace schedule
             tbl2 = DB.GetInstance().TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
             DataGrid1 = DB.GetInstance().TblObpreds.Where(s => s.CourseId == grud.CourseId).ToList();
             //DataGrid1 = DB.GetInstance().TblGroups.Where(s => s.CourseId == grud.CourseId).ToList();
+
+            Selected4 = DB.GetInstance().TblWeekdays.ToList();
+            Combobox5.ItemsSource = Selected4;
 
             var user = DB.GetInstance().TblCourses.Include
 

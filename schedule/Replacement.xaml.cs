@@ -159,13 +159,14 @@ namespace schedule
 
             //показывает данные дни недели
             Day = DB.GetInstance().TblWeekdays.ToList();
+            Combobox3.ItemsSource = Day;
 
             TblReplacement = DB.GetInstance().TblReplacements.ToList();
             tbl_replacement = DB.GetInstance().TblReplacements.ToList();
            
             //скрывает все данные в List View tbl_replacement
             //tbl_replacement = DB.GetInstance().TblReplacements.Where(s => s.Equals(SelectedDay)).ToList();
-            Combobox3.ItemsSource = Day;
+          
 
             //tbl2 = DB.GetInstance().TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
 
