@@ -240,17 +240,17 @@ namespace schedule
 
         private void Obnov(object sender, RoutedEventArgs e)
         {
-            var res = MessageBox.Show("Обновить таблицу?", "Потверждение", MessageBoxButton.YesNo,
-                    MessageBoxImage.Question);
-            if (res == MessageBoxResult.Yes)
-            {
+            //var res = MessageBox.Show("Обновить таблицу?", "Потверждение", MessageBoxButton.YesNo,
+            //        MessageBoxImage.Question);
+            //if (res == MessageBoxResult.Yes)
+            //{
                 using (var db = new ScheduleDbContext())
                 {
                     Replacement = db.TblReplacements.Where(s=>s.WeekdaysId==SelectedDay2.Id).ToList();
                     //Replacement = db.TblReplacements.ToList();
                     db.SaveChanges();
                 }
-            }
+            //}
 
 
         }

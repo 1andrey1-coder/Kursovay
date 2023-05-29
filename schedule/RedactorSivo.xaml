@@ -103,7 +103,7 @@
                     <TextBlock Text="День"/>
                     <ComboBox x:Name="Combobox5"
                               DisplayMemberPath="Day" ItemsSource="{Binding Selected4}" 
-                              SelectedItem="{Binding SelectedDay}" 
+                              SelectedItem="{Binding SelectedDay, UpdateSourceTrigger=PropertyChanged}" 
                              HorizontalAlignment="Left"  Width="100"  />
                     <TextBlock Text="Преподователь"/>
                     <TextBox x:Name="Name"  Text="{Binding Name}" HorizontalAlignment="Left" Width="100"/>

@@ -58,7 +58,7 @@ namespace schedule
             InitializeComponent();
             DataContext = this;
 
-
+            
             SelectedGroup = selectedGroup;
             grud = new TblGroup();
             grud = selectedGroup;
@@ -73,8 +73,7 @@ namespace schedule
 
              (s => s.TblObpreds);
         }
-
-
+       
         private void Fill([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -101,12 +100,14 @@ namespace schedule
                 if (resul == MessageBoxResult.Yes)
                 {
                     item1.Groupid = SelectedGroup.GroupId;
+                    //item1.Day = Selected4.Add(item1);
+
                     db.TblScheduleDbs.Add(item1);
                     db.SaveChanges();
-                    //tbl2 = DB.GetInstance().TblScheduleDbs.ToList();
+
                     tbl2 = db.TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
                     item1 = new TblScheduleDb();
-                    //OBN(sender, e);
+
                 }
 
             }
