@@ -39,6 +39,8 @@ namespace schedule
         public TblScheduleDb item1 { get => item11; set { item11 = value; Fill(); } }
         private TblScheduleDb item11 = new TblScheduleDb();
 
+
+        public DbSet<TblScheduleDb> Schedules { get; set; }
         //2 таблица
         public List<TblScheduleDb> tbl2 { get => tbl21; set { tbl21 = value; Fill(); } }
         private List<TblScheduleDb> tbl21;
@@ -99,14 +101,27 @@ namespace schedule
                 //сохраняет в выбранную группу
                 if (resul == MessageBoxResult.Yes)
                 {
+                    //if(Combobox5 != null)
+                    //{
+                    //   db.SaveChanges();
+                    //}
+
+
                     item1.Groupid = SelectedGroup.GroupId;
-                    //item1.Day = Selected4.Add(item1);
 
-                    db.TblScheduleDbs.Add(item1);
+                  
+                       
+                    //var combobox5 = db.TblScheduleDbs.SingleOrDefault(s => s.Day == Combobox5.SelectedItem);
+                    //combobox5.Day = Combobox5.Text;
+
+
+
+                    db.TblScheduleDbs.Add(item1 );
                     db.SaveChanges();
-
                     tbl2 = db.TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
                     item1 = new TblScheduleDb();
+                        
+                    
 
                 }
 
