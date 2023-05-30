@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using schedule;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,11 +55,18 @@ namespace schedule
         public List<TblObpred> DataGrid1 { get; set; }
 
         public List<TblWeekday> Selected4 { get; set; }
-        public TblWeekday SelectedDay { get; set; }
 
+
+
+
+        public TblWeekday SelectedDay { get; set; }
+        public bool Editable { get; set; }
         public RedactorSivo(TblGroup selectedGroup)
         {
             InitializeComponent();
+
+         
+
             DataContext = this;
 
             
@@ -108,19 +117,19 @@ namespace schedule
 
 
                     item1.Groupid = SelectedGroup.GroupId;
+                    //item1.Day = Combobox5.SelectedItem.ToString();
+                    item1.Day = Selected4.Where(s=>s.Id == SelectedDay.Id).ToString();
 
-                  
-                       
                     //var combobox5 = db.TblScheduleDbs.SingleOrDefault(s => s.Day == Combobox5.SelectedItem);
                     //combobox5.Day = Combobox5.Text;
 
 
 
-                    db.TblScheduleDbs.Add(item1 );
+                    db.TblScheduleDbs.Add(item1);
                     db.SaveChanges();
                     tbl2 = db.TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
                     item1 = new TblScheduleDb();
-                        
+                 
                     
 
                 }
@@ -186,4 +195,16 @@ namespace schedule
 
         }
     }
+}
+public static class ProductExtension
+{
+    //public static Product Clone(this Product product)
+    //{
+    //    var values = DB.GetInstance().Products.Entry(product).CurrentValues.Clone();
+    //    var clone = (Product)values.ToObject();
+    //    clone.ProductCategoryNavigation = product.ProductCategoryNavigation;
+    //    clone.ProductManufacturerNavigation = product.ProductManufacturerNavigation;
+    //    clone.ProductProviderNavigation = product.ProductProviderNavigation;
+    //    return clone;
+    //}
 }

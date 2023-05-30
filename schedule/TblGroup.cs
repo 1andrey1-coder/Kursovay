@@ -26,4 +26,5 @@ public partial class TblGroup
     public virtual TblSpeciality? Speciality { get; set; }
 
     public virtual ICollection<TblScheduleDb> TblScheduleDbs { get; } = new List<TblScheduleDb>();
+
 }

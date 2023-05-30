@@ -289,19 +289,19 @@ namespace schedule
         {
 
             DB.GetInstance().SaveChanges();
-            if(SelectedDay != null)
-            {
-                MessageBox.Show("Мы даем вам 2 шанс на изменение", "Рассуждение ");
+            //if (SelectedDay != null)
+            //{
+            //    MessageBox.Show("Мы даем вам 2 шанс на изменение", "Рассуждение ");
 
-            }
-            else
-            {
-                tbl_replacement = DB.GetInstance().TblReplacements.Where(s => s.WeekdaysId == SelectedDay.Id).ToList();
+            //}
+            //else
+            //{
+            //    tbl_replacement = DB.GetInstance().TblReplacements.Where(s => s.WeekdaysId == SelectedDay.Id).ToList();
 
 
-                
-            }
-          
+
+            //}
+
 
 
         }
