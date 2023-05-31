@@ -49,6 +49,7 @@ namespace schedule
 
         public TblScheduleDb item2 { get => item21; set { item21 = value; Fill(); } }
         private TblScheduleDb item21 = new TblScheduleDb();
+      
 
         public DbSet<Pair1> pairs { get; set; }
 
@@ -60,16 +61,19 @@ namespace schedule
 
 
         public TblWeekday SelectedDay { get; set; }
+
         public bool Editable { get; set; }
+        public string? SelectedItem { get; private set; }
+
         public RedactorSivo(TblGroup selectedGroup)
         {
             InitializeComponent();
 
-         
+
 
             DataContext = this;
 
-            
+
             SelectedGroup = selectedGroup;
             grud = new TblGroup();
             grud = selectedGroup;
@@ -84,7 +88,7 @@ namespace schedule
 
              (s => s.TblObpreds);
         }
-       
+
         private void Fill([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -92,7 +96,7 @@ namespace schedule
         private void Nazad(object sender, RoutedEventArgs e)
         {
             Close();
-           
+
         }
 
         private void Dobav(object sender, SelectionChangedEventArgs e)
@@ -117,8 +121,17 @@ namespace schedule
 
 
                     item1.Groupid = SelectedGroup.GroupId;
-                    //item1.Day = Combobox5.SelectedItem.ToString();
-                    item1.Day = Selected4.Where(s=>s.Id == SelectedDay.Id).ToString();
+                    item1.Day = Combobox5.SelectedItem.ToString();
+                    //item1.Day = Selected4.ToString() ;
+                    //Selected4.Add(SelectedDay);
+                    //item1 = SelectedGroup;
+
+
+
+
+                    //item1 = SelectedDay;
+
+                    //item1.Day = Selected4.Where(s => s.Id == SelectedDay.Id).ToString();
 
                     //var combobox5 = db.TblScheduleDbs.SingleOrDefault(s => s.Day == Combobox5.SelectedItem);
                     //combobox5.Day = Combobox5.Text;
@@ -129,8 +142,8 @@ namespace schedule
                     db.SaveChanges();
                     tbl2 = db.TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
                     item1 = new TblScheduleDb();
-                 
-                    
+
+
 
                 }
 
@@ -174,8 +187,8 @@ namespace schedule
                     DB.GetInstance().TblScheduleDbs.Remove(item2);
                     //db.TblScheduleDbs.Update(item2);
                     DB.GetInstance().SaveChanges();
-                    tbl2 = DB.GetInstance().TblScheduleDbs.Where(s=>s.Groupid==SelectedGroup.GroupId).ToList();
-                
+                    tbl2 = DB.GetInstance().TblScheduleDbs.Where(s => s.Groupid == SelectedGroup.GroupId).ToList();
+
 
 
 
