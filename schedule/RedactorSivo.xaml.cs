@@ -121,7 +121,8 @@ namespace schedule
 
 
                     item1.Groupid = SelectedGroup.GroupId;
-                    item1.Day = Combobox5.SelectedItem.ToString();
+                    //item1.Day = Combobox5.SelectedItem.ToString();
+                    item1.Day = ((TblWeekday)Combobox5.SelectedItem).Day;
                     //item1.Day = Selected4.ToString() ;
                     //Selected4.Add(SelectedDay);
                     //item1 = SelectedGroup;
