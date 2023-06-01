@@ -11,5 +11,9 @@ public partial class TblObpred
 
     public int? CourseId { get; set; }
 
+    public int? Groupid { get; set; }
+
     public virtual TblCourse? Course { get; set; }
+
+    public virtual TblGroup? Group { get; set; }
 }

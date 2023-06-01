@@ -43,7 +43,7 @@ public partial class ScheduleDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("host=192.168.200.13;user=student;password=student;database=schedule_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.3.38-mariadb"));
+        => optionsBuilder.UseMySql("host=localhost;user=root;password=Myl1ttledvmk3003@;database=schedule_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -57,9 +57,7 @@ public partial class ScheduleDbContext : DbContext
 
             entity.ToTable("pair1");
 
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
         });
 
         modelBuilder.Entity<TblCourse>(entity =>
@@ -70,10 +68,7 @@ public partial class ScheduleDbContext : DbContext
 
             entity.HasIndex(e => e.Course, "FK_tbl_course");
 
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
-            entity.Property(e => e.Course).HasColumnType("int(11)");
+            entity.Property(e => e.Id).HasColumnName("id");
         });
 
         modelBuilder.Entity<TblDay>(entity =>
@@ -84,11 +79,7 @@ public partial class ScheduleDbContext : DbContext
 
             entity.HasIndex(e => e.PairId, "FK_tbl_day_tbl_pairs_Id");
 
-            entity.Property(e => e.Id).HasColumnType("int(11)");
-            entity.Property(e => e.DaySid)
-                .HasColumnType("int(11)")
-                .HasColumnName("DaySId");
-            entity.Property(e => e.PairId).HasColumnType("int(11)");
+            entity.Property(e => e.DaySid).HasColumnName("DaySId");
 
             entity.HasOne(d => d.Pair).WithMany(p => p.TblDays)
                 .HasForeignKey(d => d.PairId)
@@ -109,22 +100,11 @@ public partial class ScheduleDbContext : DbContext
 
             entity.HasIndex(e => e.SpecialityId, "FK_tbl_group_tbl_speciality_specialityID");
 
-            entity.Property(e => e.GroupId)
-                .HasColumnType("int(11)")
-                .HasColumnName("GroupID");
-            entity.Property(e => e.CourseId)
-                .HasColumnType("int(11)")
-                .HasColumnName("courseID");
-            entity.Property(e => e.Group).HasColumnType("int(11)");
-            entity.Property(e => e.SemestrNuberId)
-                .HasColumnType("int(11)")
-                .HasColumnName("semestrNuberID");
-            entity.Property(e => e.SemestrWeekId)
-                .HasColumnType("int(11)")
-                .HasColumnName("semestrWeekID");
-            entity.Property(e => e.SpecialityId)
-                .HasColumnType("int(11)")
-                .HasColumnName("specialityID");
+            entity.Property(e => e.GroupId).HasColumnName("GroupID");
+            entity.Property(e => e.CourseId).HasColumnName("courseID");
+            entity.Property(e => e.SemestrNuberId).HasColumnName("semestrNuberID");
+            entity.Property(e => e.SemestrWeekId).HasColumnName("semestrWeekID");
+            entity.Property(e => e.SpecialityId).HasColumnName("specialityID");
 
             entity.HasOne(d => d.Course).WithMany(p => p.TblGroups)
                 .HasForeignKey(d => d.CourseId)
@@ -149,12 +129,11 @@ public partial class ScheduleDbContext : DbContext
 
             entity.HasIndex(e => e.CourseId, "FK_tbl_obpred_tbl_course_id");
 
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
-            entity.Property(e => e.CourseId)
-                .HasColumnType("int(11)")
-                .HasColumnName("courseID");
+            entity.HasIndex(e => e.Groupid, "FK_tbl_obpred_tbl_group_GroupID");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CourseId).HasColumnName("courseID");
+            entity.Property(e => e.Groupid).HasColumnName("groupid");
             entity.Property(e => e.Predmet)
                 .HasMaxLength(255)
                 .HasColumnName("predmet");
@@ -162,6 +141,10 @@ public partial class ScheduleDbContext : DbContext
             entity.HasOne(d => d.Course).WithMany(p => p.TblObpreds)
                 .HasForeignKey(d => d.CourseId)
                 .HasConstraintName("FK_tbl_obpred_tbl_course_id");
+
+            entity.HasOne(d => d.Group).WithMany(p => p.TblObpreds)
+                .HasForeignKey(d => d.Groupid)
+                .HasConstraintName("FK_tbl_obpred_tbl_group_GroupID");
         });
 
         modelBuilder.Entity<TblPair>(entity =>
@@ -170,10 +153,7 @@ public partial class ScheduleDbContext : DbContext
 
             entity.ToTable("tbl_pairs");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnType("int(11)");
-            entity.Property(e => e.Pairid).HasColumnType("int(11)");
+            entity.Property(e => e.Id).ValueGeneratedNever();
         });
 
         modelBuilder.Entity<TblPredmet>(entity =>
@@ -184,12 +164,8 @@ public partial class ScheduleDbContext : DbContext
 
             entity.HasIndex(e => e.Factionid, "FK_tbl_predmet_tbl_faction_id");
 
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
-            entity.Property(e => e.Factionid)
-                .HasColumnType("int(11)")
-                .HasColumnName("factionid");
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Factionid).HasColumnName("factionid");
             entity.Property(e => e.Predmet)
                 .HasMaxLength(255)
                 .HasColumnName("predmet");
@@ -203,20 +179,14 @@ public partial class ScheduleDbContext : DbContext
 
             entity.HasIndex(e => e.WeekdaysId, "FK_tbl_replacement");
 
-            entity.Property(e => e.Id).HasColumnType("int(11)");
-            entity.Property(e => e.Cabinet).HasColumnType("int(11)");
             entity.Property(e => e.Date).HasColumnType("datetime");
-            entity.Property(e => e.Group).HasColumnType("int(11)");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''");
-            entity.Property(e => e.Pair).HasColumnType("int(11)");
             entity.Property(e => e.Predmet)
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''");
-            entity.Property(e => e.WeekdaysId)
-                .HasColumnType("int(11)")
-                .HasColumnName("weekdaysId");
+            entity.Property(e => e.WeekdaysId).HasColumnName("weekdaysId");
 
             entity.HasOne(d => d.Weekdays).WithMany(p => p.TblReplacements)
                 .HasForeignKey(d => d.WeekdaysId)
@@ -231,18 +201,13 @@ public partial class ScheduleDbContext : DbContext
 
             entity.HasIndex(e => e.Groupid, "FK_tbl_schedule_db_tbl_group_GroupID");
 
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
-            entity.Property(e => e.Cabinet).HasColumnType("int(11)");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Day)
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''");
-            entity.Property(e => e.Groupid).HasColumnType("int(11)");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''");
-            entity.Property(e => e.Pair).HasColumnType("int(11)");
             entity.Property(e => e.Predmet)
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''");
@@ -262,17 +227,10 @@ public partial class ScheduleDbContext : DbContext
 
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
-                .HasColumnType("int(11)")
                 .HasColumnName("ID");
-            entity.Property(e => e.SemesterNumber)
-                .HasColumnType("int(11)")
-                .HasColumnName("semesterNumber");
-            entity.Property(e => e.SemesterWeek)
-                .HasColumnType("int(11)")
-                .HasColumnName("semesterWeek");
-            entity.Property(e => e.SpecialityId)
-                .HasColumnType("int(11)")
-                .HasColumnName("specialityID");
+            entity.Property(e => e.SemesterNumber).HasColumnName("semesterNumber");
+            entity.Property(e => e.SemesterWeek).HasColumnName("semesterWeek");
+            entity.Property(e => e.SpecialityId).HasColumnName("specialityID");
         });
 
         modelBuilder.Entity<TblSemestr>(entity =>
@@ -285,18 +243,10 @@ public partial class ScheduleDbContext : DbContext
 
             entity.HasIndex(e => e.CourseId, "FK_tbl_semestr_tbl_obpred_id");
 
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
-            entity.Property(e => e.CourseId)
-                .HasColumnType("int(11)")
-                .HasColumnName("CourseID");
-            entity.Property(e => e.SemesterNuber)
-                .HasColumnType("int(11)")
-                .HasColumnName("semesterNuber");
-            entity.Property(e => e.SemesterWeek)
-                .HasColumnType("int(11)")
-                .HasColumnName("semesterWeek");
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CourseId).HasColumnName("CourseID");
+            entity.Property(e => e.SemesterNuber).HasColumnName("semesterNuber");
+            entity.Property(e => e.SemesterWeek).HasColumnName("semesterWeek");
 
             entity.HasOne(d => d.Course).WithMany(p => p.TblSemestrs)
                 .HasForeignKey(d => d.CourseId)
@@ -309,9 +259,7 @@ public partial class ScheduleDbContext : DbContext
 
             entity.ToTable("tbl_speciality");
 
-            entity.Property(e => e.SpecialityId)
-                .HasColumnType("int(11)")
-                .HasColumnName("specialityID");
+            entity.Property(e => e.SpecialityId).HasColumnName("specialityID");
             entity.Property(e => e.Speciality)
                 .HasMaxLength(255)
                 .HasColumnName("speciality");
@@ -323,9 +271,7 @@ public partial class ScheduleDbContext : DbContext
 
             entity.ToTable("tbl_weekdays");
 
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Day).HasMaxLength(255);
         });
 

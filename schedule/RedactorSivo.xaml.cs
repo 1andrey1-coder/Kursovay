@@ -77,8 +77,9 @@ namespace schedule
             SelectedGroup = selectedGroup;
             grud = new TblGroup();
             grud = selectedGroup;
+
             tbl2 = DB.GetInstance().TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
-            DataGrid1 = DB.GetInstance().TblObpreds.Where(s => s.CourseId == grud.CourseId).ToList();
+            DataGrid1 = DB.GetInstance().TblObpreds.Where(s => s.Groupid == grud.GroupId).ToList();
             //DataGrid1 = DB.GetInstance().TblGroups.Where(s => s.CourseId == grud.CourseId).ToList();
 
             Selected4 = DB.GetInstance().TblWeekdays.ToList();
@@ -114,30 +115,12 @@ namespace schedule
                 //сохраняет в выбранную группу
                 if (resul == MessageBoxResult.Yes)
                 {
-                    //if(Combobox5 != null)
-                    //{
-                    //   db.SaveChanges();
-                    //}
+                    
 
 
                     item1.Groupid = SelectedGroup.GroupId;
-                    //item1.Day = Combobox5.SelectedItem.ToString();
                     item1.Day = ((TblWeekday)Combobox5.SelectedItem).Day;
-                    //item1.Day = Selected4.ToString() ;
-                    //Selected4.Add(SelectedDay);
-                    //item1 = SelectedGroup;
-
-
-
-
-                    //item1 = SelectedDay;
-
-                    //item1.Day = Selected4.Where(s => s.Id == SelectedDay.Id).ToString();
-
-                    //var combobox5 = db.TblScheduleDbs.SingleOrDefault(s => s.Day == Combobox5.SelectedItem);
-                    //combobox5.Day = Combobox5.Text;
-
-
+                    
 
                     db.TblScheduleDbs.Add(item1);
                     db.SaveChanges();
@@ -211,15 +194,4 @@ namespace schedule
         }
     }
 }
-public static class ProductExtension
-{
-    //public static Product Clone(this Product product)
-    //{
-    //    var values = DB.GetInstance().Products.Entry(product).CurrentValues.Clone();
-    //    var clone = (Product)values.ToObject();
-    //    clone.ProductCategoryNavigation = product.ProductCategoryNavigation;
-    //    clone.ProductManufacturerNavigation = product.ProductManufacturerNavigation;
-    //    clone.ProductProviderNavigation = product.ProductProviderNavigation;
-    //    return clone;
-    //}
-}
+
