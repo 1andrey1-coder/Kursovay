@@ -155,10 +155,49 @@ namespace schedule
                       
 
                     }
-                    //item1.Predmet = ((TblObpred)ComboboxPred.SelectedItem).Predmet;
-                    item1.Name = ((TblName)ComboboxPrepod.SelectedItem).Name;
-                    item1.Pair = ((TblPair)ComboboxPair.SelectedItem).Pair;
-                    item1.Cabinet = ((TblAudit)ComboboxAudit.SelectedItem).Audit;
+
+                    if (ComboboxPred != null)
+                    {
+                        MessageBox.Show("Выберите день недели", "Предупреждение",
+                          MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        //item1.Predmet = ((TblObpred)ComboboxPred.SelectedItem).Predmet;
+
+                    }
+                    if (ComboboxPrepod != null)
+                    {
+                        MessageBox.Show("Выберите день недели", "Предупреждение",
+                          MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        item1.Name = ((TblName)ComboboxPrepod.SelectedItem).Name;
+
+                    }
+                    if (ComboboxPair != null)
+                    {
+                        MessageBox.Show("Выберите день недели", "Предупреждение",
+                          MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        item1.Pair = ((TblPair)ComboboxPair.SelectedItem).Pair;
+
+
+
+                    }
+                    if (ComboboxAudit != null)
+                    {
+                        MessageBox.Show("Выберите день недели", "Предупреждение",
+                          MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        item1.Cabinet = ((TblAudit)ComboboxAudit.SelectedItem).Audit;
+
+                    }
 
 
                     db.TblScheduleDbs.Add(item1);

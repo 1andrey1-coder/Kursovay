@@ -69,7 +69,8 @@
             <TextBox  DockPanel.Dock="Top" Width="200" HorizontalAlignment="Left" Text="{Binding SearchText,
                 UpdateSourceTrigger=PropertyChanged}"  x:Name="txtFilter" />
             <ListView VerticalAlignment="Top" Background="LightBlue"  x:Name="listschedule"
-                      SelectedItem="{Binding Selected}" ItemsSource="{Binding tbl_replacement}" Height="375">
+                      SelectedItem="{Binding Selected}" ItemsSource="{Binding tbl_replacement}"
+                      Height="375">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn  Header="Группа" Width="150" DisplayMemberBinding="{Binding Group}"/>
