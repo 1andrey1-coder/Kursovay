@@ -102,12 +102,12 @@
 
                     <TextBlock Text="День"/>
                     <ComboBox x:Name="Combobox5"
-                              DisplayMemberPath="Day" ItemsSource="{Binding Selected4}" 
+                              DisplayMemberPath="Day" ItemsSource="{Binding Day}" 
                               SelectedItem="{Binding SelectedDay, UpdateSourceTrigger=PropertyChanged}" 
                              HorizontalAlignment="Left"  Width="100"  />
                     <TextBlock Text="Преподователь"/>
                     <ComboBox x:Name="ComboboxPrepod"
-                              DisplayMemberPath="Prepod" ItemsSource="{Binding prepod}" 
+                              DisplayMemberPath="Name" ItemsSource="{Binding Name}" 
                               SelectedItem="{Binding SelectedPrepod, UpdateSourceTrigger=PropertyChanged}" 
                              HorizontalAlignment="Left"  Width="100"  />
                     <TextBlock Text="Пара"/>

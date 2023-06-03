@@ -157,9 +157,7 @@ namespace schedule
         private void Search2()
         {
 
-            //    var SelectedGroup2 = Combobox2.SelectedItem as TblGroup;
-            //Combobox2.SelectedItem != SelectedGroup2
-
+            
            
                 var db = new ScheduleDbContext();
                 var result = db.TblScheduleDbs.Where(s => s.Name.Contains(searchText2));
@@ -172,12 +170,7 @@ namespace schedule
                 Signal(nameof(TblScheduleDb));
 
             
-            //    //else
-            //    //{
-
-            //    //     MessageBox.Show("ПРивет");
-            //    //}
-
+            
 
 
 

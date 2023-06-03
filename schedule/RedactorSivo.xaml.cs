@@ -34,6 +34,8 @@ namespace schedule
         private TblGroup SelectedGroup { get; set; }
         public TblGroup grud { get; set; }
         public TblName SelectedPrepod { get; set; }
+        public TblAudit SelectedAudit { get; set; }
+        public TblPair SelectedPair { get; set; }
 
         //1 таблица
         //public List<TblScheduleDb> tbl1 { get => tbl11; set { tbl11 = value; Fill(); } }
@@ -56,8 +58,8 @@ namespace schedule
 
         public List<TblObpred> DataGrid1 { get; set; }
 
-        public List<TblWeekday> Selected4 { get; set; }
-        public List<TblObpred> prepod { get; set; }
+        public List<TblWeekday> Day { get; set; }
+        public List<TblName> Name { get; set; }
         public List<TblPair> pair { get; set; }
         public List<TblObpred> predmet { get; set; }
         public List<TblAudit> audit { get; set; }
@@ -73,48 +75,43 @@ namespace schedule
         public RedactorSivo(TblGroup selectedGroup)
         {
             InitializeComponent();
-
-
-
             DataContext = this;
-
 
             SelectedGroup = selectedGroup;
             grud = new TblGroup();
             grud = selectedGroup;
 
+            Day = DB.GetInstance().TblWeekdays.ToList();
+
+            //не показывает
+            //Name = DB.GetInstance().TblObpreds.Where(s => s.Groupid == grud.GroupId).ToList();
+            Name = DB.GetInstance().TblNames.ToList();
+            //не показывает
+            pair = DB.GetInstance().TblPairs.ToList();
+
+            //не показывает
+            predmet = DB.GetInstance().TblObpreds.Where(s => s.Groupid == grud.GroupId).ToList();
+            //не показывает
+
+            audit = DB.GetInstance().TblAudits.ToList();
+
             tbl2 = DB.GetInstance().TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
             DataGrid1 = DB.GetInstance().TblObpreds.Where(s => s.Groupid == grud.GroupId).ToList();
             //DataGrid1 = DB.GetInstance().TblGroups.Where(s => s.CourseId == grud.CourseId).ToList();
 
-            Selected4 = DB.GetInstance().TblWeekdays.ToList();
-            Combobox5.ItemsSource = Selected4;
 
-            //не показывает
-
-            //prepod = DB.GetInstance().TblObpreds.Where(s => s.Groupid == grud.GroupId).ToList();
-            prepod = DB.GetInstance().TblObpreds.Where(s => s.Nameid == grud.GroupId).ToList();
-            ComboboxPrepod.ItemsSource = prepod;
-
-            //не показывает
-
-            pair = DB.GetInstance().TblPairs.ToList();
+            Combobox5.ItemsSource = Day;
+            ComboboxPrepod.ItemsSource = Name;
             ComboboxPair.ItemsSource = pair;
-
-            //не показывает
-
-            predmet = DB.GetInstance().TblObpreds.Where(s => s.Groupid == grud.GroupId).ToList();
             ComboboxPred.ItemsSource = predmet;
-
-            //не показывает
-
-            audit = DB.GetInstance().TblAudits.ToList();
             ComboboxAudit.ItemsSource = audit;
+            FillGroup();
 
 
             var user = DB.GetInstance().TblCourses.Include
-
              (s => s.TblObpreds);
+
+        
         }
 
         private void Fill([CallerMemberName] string name = null)
@@ -146,9 +143,20 @@ namespace schedule
 
 
                     item1.Groupid = SelectedGroup.GroupId;
-                    item1.Day = ((TblWeekday)Combobox5.SelectedItem).Day;
+                    if(Combobox5 != null)
+                    {
+                        MessageBox.Show("Выберите день недели", "Предупреждение",
+                          MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        item1.Day = ((TblWeekday)Combobox5.SelectedItem).Day;
+
+                      
+
+                    }
                     //item1.Predmet = ((TblObpred)ComboboxPred.SelectedItem).Predmet;
-                    //item1.Name = ((TblName)ComboboxPrepod.SelectedItem).Name;
+                    item1.Name = ((TblName)ComboboxPrepod.SelectedItem).Name;
                     item1.Pair = ((TblPair)ComboboxPair.SelectedItem).Pair;
                     item1.Cabinet = ((TblAudit)ComboboxAudit.SelectedItem).Audit;
 
@@ -163,6 +171,14 @@ namespace schedule
                 }
 
             }
+        }
+        private void FillGroup()
+        {
+            SelectedDay = Day.FirstOrDefault();
+            //SelectedPrepod = prepod.FirstOrDefault();
+            SelectedPair = pair.FirstOrDefault();
+            //SelectedDay = predmet.FirstOrDefault();
+            SelectedAudit = audit.FirstOrDefault();
         }
 
         private void OBN(object sender, RoutedEventArgs e)
