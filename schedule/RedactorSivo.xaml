@@ -106,13 +106,25 @@
                               SelectedItem="{Binding SelectedDay, UpdateSourceTrigger=PropertyChanged}" 
                              HorizontalAlignment="Left"  Width="100"  />
                     <TextBlock Text="Преподователь"/>
-                    <TextBox x:Name="Name"  Text="{Binding Name}" HorizontalAlignment="Left" Width="100"/>
+                    <ComboBox x:Name="ComboboxPrepod"
+                              DisplayMemberPath="Prepod" ItemsSource="{Binding prepod}" 
+                              SelectedItem="{Binding SelectedPrepod, UpdateSourceTrigger=PropertyChanged}" 
+                             HorizontalAlignment="Left"  Width="100"  />
                     <TextBlock Text="Пара"/>
-                    <TextBox x:Name="Pair" Text="{Binding Pair}"  HorizontalAlignment="Left" Width="100"/>
+                    <ComboBox x:Name="ComboboxPair"
+                              DisplayMemberPath="Pair" ItemsSource="{Binding pair}" 
+                              SelectedItem="{Binding SelectedPair, UpdateSourceTrigger=PropertyChanged}" 
+                             HorizontalAlignment="Left"  Width="100"  />
                     <TextBlock Text="Предмет"/>
-                    <TextBox x:Name="Predmet"  Text="{Binding Predmet}"  HorizontalAlignment="Left" Width="100"/>
+                    <ComboBox x:Name="ComboboxPred"
+                              DisplayMemberPath="Pred" ItemsSource="{Binding predmet}" 
+                              SelectedItem="{Binding SelectedPred, UpdateSourceTrigger=PropertyChanged}" 
+                             HorizontalAlignment="Left"  Width="100"  />
                     <TextBlock Text="Аудитория"/>
-                    <TextBox x:Name="Cabinet"  Text="{Binding Cabinet}"  HorizontalAlignment="Left" Width="100"/>
+                    <ComboBox x:Name="ComboboxAudit"
+                              DisplayMemberPath="Audit" ItemsSource="{Binding audit}" 
+                              SelectedItem="{Binding SelectedAudit, UpdateSourceTrigger=PropertyChanged}" 
+                             HorizontalAlignment="Left"  Width="100"  />
 
                 </StackPanel>
             </Label>

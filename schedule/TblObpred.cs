@@ -13,7 +13,11 @@ public partial class TblObpred
 
     public int? Groupid { get; set; }
 
+    public int? Nameid { get; set; }
+
     public virtual TblCourse? Course { get; set; }
 
     public virtual TblGroup? Group { get; set; }
+
+    public virtual TblName? Name { get; set; }
 }

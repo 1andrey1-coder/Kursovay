@@ -11,7 +11,7 @@ public partial class TblScheduleDb
 
     public string? Predmet { get; set; }
 
-    public int? Cabinet { get; set; }
+    public double? Cabinet { get; set; }
 
     public string? Day { get; set; }
 

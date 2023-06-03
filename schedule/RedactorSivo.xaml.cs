@@ -33,6 +33,7 @@ namespace schedule
 
         private TblGroup SelectedGroup { get; set; }
         public TblGroup grud { get; set; }
+        public TblName SelectedPrepod { get; set; }
 
         //1 таблица
         //public List<TblScheduleDb> tbl1 { get => tbl11; set { tbl11 = value; Fill(); } }
@@ -56,6 +57,10 @@ namespace schedule
         public List<TblObpred> DataGrid1 { get; set; }
 
         public List<TblWeekday> Selected4 { get; set; }
+        public List<TblObpred> prepod { get; set; }
+        public List<TblPair> pair { get; set; }
+        public List<TblObpred> predmet { get; set; }
+        public List<TblAudit> audit { get; set; }
 
 
 
@@ -84,6 +89,28 @@ namespace schedule
 
             Selected4 = DB.GetInstance().TblWeekdays.ToList();
             Combobox5.ItemsSource = Selected4;
+
+            //не показывает
+
+            //prepod = DB.GetInstance().TblObpreds.Where(s => s.Groupid == grud.GroupId).ToList();
+            prepod = DB.GetInstance().TblObpreds.Where(s => s.Nameid == grud.GroupId).ToList();
+            ComboboxPrepod.ItemsSource = prepod;
+
+            //не показывает
+
+            pair = DB.GetInstance().TblPairs.ToList();
+            ComboboxPair.ItemsSource = pair;
+
+            //не показывает
+
+            predmet = DB.GetInstance().TblObpreds.Where(s => s.Groupid == grud.GroupId).ToList();
+            ComboboxPred.ItemsSource = predmet;
+
+            //не показывает
+
+            audit = DB.GetInstance().TblAudits.ToList();
+            ComboboxAudit.ItemsSource = audit;
+
 
             var user = DB.GetInstance().TblCourses.Include
 
@@ -120,7 +147,11 @@ namespace schedule
 
                     item1.Groupid = SelectedGroup.GroupId;
                     item1.Day = ((TblWeekday)Combobox5.SelectedItem).Day;
-                    
+                    //item1.Predmet = ((TblObpred)ComboboxPred.SelectedItem).Predmet;
+                    //item1.Name = ((TblName)ComboboxPrepod.SelectedItem).Name;
+                    item1.Pair = ((TblPair)ComboboxPair.SelectedItem).Pair;
+                    item1.Cabinet = ((TblAudit)ComboboxAudit.SelectedItem).Audit;
+
 
                     db.TblScheduleDbs.Add(item1);
                     db.SaveChanges();

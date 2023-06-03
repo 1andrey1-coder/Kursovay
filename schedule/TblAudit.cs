@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace schedule;
 
-public partial class TblPair
+public partial class TblAudit
 {
     public int Id { get; set; }
 
-    public int? Pair { get; set; }
+    public double? Audit { get; set; }
 }

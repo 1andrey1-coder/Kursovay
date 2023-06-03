@@ -17,11 +17,13 @@ public partial class ScheduleDbContext : DbContext
 
     public virtual DbSet<Pair1> Pair1s { get; set; }
 
+    public virtual DbSet<TblAudit> TblAudits { get; set; }
+
     public virtual DbSet<TblCourse> TblCourses { get; set; }
 
-    public virtual DbSet<TblDay> TblDays { get; set; }
-
     public virtual DbSet<TblGroup> TblGroups { get; set; }
+
+    public virtual DbSet<TblName> TblNames { get; set; }
 
     public virtual DbSet<TblObpred> TblObpreds { get; set; }
 
@@ -33,8 +35,6 @@ public partial class ScheduleDbContext : DbContext
 
     public virtual DbSet<TblScheduleDb> TblScheduleDbs { get; set; }
 
-    public virtual DbSet<TblSemester> TblSemesters { get; set; }
-
     public virtual DbSet<TblSemestr> TblSemestrs { get; set; }
 
     public virtual DbSet<TblSpeciality> TblSpecialities { get; set; }
@@ -43,7 +43,7 @@ public partial class ScheduleDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("host=localhost;user=root;password=Myl1ttledvmk3003@;database=schedule_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
+        => optionsBuilder.UseMySql("host=localhost;userid=root;password=Myl1ttledvmk3003@;database=schedule_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -60,6 +60,13 @@ public partial class ScheduleDbContext : DbContext
             entity.Property(e => e.Id).HasColumnName("id");
         });
 
+        modelBuilder.Entity<TblAudit>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("tbl_audit");
+        });
+
         modelBuilder.Entity<TblCourse>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -69,21 +76,6 @@ public partial class ScheduleDbContext : DbContext
             entity.HasIndex(e => e.Course, "FK_tbl_course");
 
             entity.Property(e => e.Id).HasColumnName("id");
-        });
-
-        modelBuilder.Entity<TblDay>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("tbl_day");
-
-            entity.HasIndex(e => e.PairId, "FK_tbl_day_tbl_pairs_Id");
-
-            entity.Property(e => e.DaySid).HasColumnName("DaySId");
-
-            entity.HasOne(d => d.Pair).WithMany(p => p.TblDays)
-                .HasForeignKey(d => d.PairId)
-                .HasConstraintName("FK_tbl_day_tbl_pairs_Id");
         });
 
         modelBuilder.Entity<TblGroup>(entity =>
@@ -121,6 +113,16 @@ public partial class ScheduleDbContext : DbContext
             entity.HasOne(d => d.Speciality).WithMany(p => p.TblGroups).HasForeignKey(d => d.SpecialityId);
         });
 
+        modelBuilder.Entity<TblName>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("tbl_name");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Name).HasMaxLength(50);
+        });
+
         modelBuilder.Entity<TblObpred>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -131,9 +133,12 @@ public partial class ScheduleDbContext : DbContext
 
             entity.HasIndex(e => e.Groupid, "FK_tbl_obpred_tbl_group_GroupID");
 
+            entity.HasIndex(e => e.Nameid, "FK_tbl_obpred_tbl_name_id");
+
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CourseId).HasColumnName("courseID");
             entity.Property(e => e.Groupid).HasColumnName("groupid");
+            entity.Property(e => e.Nameid).HasColumnName("nameid");
             entity.Property(e => e.Predmet)
                 .HasMaxLength(255)
                 .HasColumnName("predmet");
@@ -145,6 +150,10 @@ public partial class ScheduleDbContext : DbContext
             entity.HasOne(d => d.Group).WithMany(p => p.TblObpreds)
                 .HasForeignKey(d => d.Groupid)
                 .HasConstraintName("FK_tbl_obpred_tbl_group_GroupID");
+
+            entity.HasOne(d => d.Name).WithMany(p => p.TblObpreds)
+                .HasForeignKey(d => d.Nameid)
+                .HasConstraintName("FK_tbl_obpred_tbl_name_id");
         });
 
         modelBuilder.Entity<TblPair>(entity =>
@@ -215,22 +224,6 @@ public partial class ScheduleDbContext : DbContext
             entity.HasOne(d => d.Group).WithMany(p => p.TblScheduleDbs)
                 .HasForeignKey(d => d.Groupid)
                 .HasConstraintName("FK_tbl_schedule_db_tbl_group_GroupID");
-        });
-
-        modelBuilder.Entity<TblSemester>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("tbl_semester");
-
-            entity.HasIndex(e => e.SpecialityId, "FK_tbl_predmetid_tbl_speciality_specialityID");
-
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
-            entity.Property(e => e.SemesterNumber).HasColumnName("semesterNumber");
-            entity.Property(e => e.SemesterWeek).HasColumnName("semesterWeek");
-            entity.Property(e => e.SpecialityId).HasColumnName("specialityID");
         });
 
         modelBuilder.Entity<TblSemestr>(entity =>
