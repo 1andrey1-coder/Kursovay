@@ -287,44 +287,7 @@ namespace schedule
             TblScheduleDb = DB.GetInstance().TblScheduleDbs.ToList();
         }
 
-        private void click(object sender, RoutedEventArgs e)
-        {
-            using(var db = new ScheduleDbContext())
-            {
-
-
-                //DateTime pip = SelectedDate1.Date;
-                //var pop = SelectedDate2.Id;
-                //if (pip == pop)
-                //{
-                //    Replacement2 = db.TblReplacements.Where(s => s.Date == SelectedDate1.Date).ToList();
-
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Проверьте выбраный день");
-                //}
-
-                //DayOfWeek selectedDayOfWeek = SelectedDate1.Date;
-                //DayOfWeek currentDayOfWeek = SelectedDate2.Day;
-                //if (selectedDayOfWeek == currentDayOfWeek)
-                //{
-                //    //Replacement2 = db.TblReplacements.ToList();
-                //    Replacement2 = db.TblReplacements.Where(s => s.WeekdaysId == SelectedDate1.).ToList();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Проверьте выбраный день");
-                //}
-
-                //Replacement = db.TblReplacements.Where(s => s.Date == SelectedDate1.Date).ToList();
-
-
-                //DateTime SelectedDate1 = DateTime.Today;
-                Replacement = db.TblReplacements.Where(s => s.WeekdaysId == SelectedDay2.Id).ToList();
-                //Replacement = DB.GetInstance().TblReplacements.ToList();
-            }
-        }
+       
         
             //MyCombobox4_SelectionChanged
         private void Day1(object sender, SelectionChangedEventArgs e)
@@ -335,6 +298,26 @@ namespace schedule
         private void VCE2(object sender, RoutedEventArgs e)
         {
             TblScheduleDb = DB.GetInstance().TblScheduleDbs.ToList();
+        }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DayOfWeek selectedDateDayOfWeek = ((DateTime)datePicker.SelectedDate).DayOfWeek;
+            TblWeekday selectedComboBoxDayOfWeek = ((TblWeekday)Combobox4.SelectedItem);
+            if(selectedDateDayOfWeek == selectedComboBoxDayOfWeek)
+            {
+                DateTime? selectedDate = datePicker.SelectedDate;
+                listschedule2.ItemsSource = Replacement.Where(s => s.Date == selectedDate.Value).ToList();
+            }
+
+
+
+            //работает
+            //DateTime? selectedDate = datePicker.SelectedDate;
+            //if(selectedDate != null)
+            //{
+            //    listschedule2.ItemsSource = Replacement.Where(s=>s.Date == selectedDate.Value).ToList();
+            //}
         }
     }
 }

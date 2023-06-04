@@ -125,7 +125,7 @@
 
 
             <ListView Background="LightBlue" HorizontalAlignment="Left" 
-                      x:Name="listschedule2"  MinHeight="150" ItemsSource="{Binding Replacement}" Height="195" Width="728"    >
+                      x:Name="listschedule2"  MinHeight="150" ItemsSource="{Binding Replacement}" Height="195" Width="798"    >
                 <ListView.View  >
                     <GridView >
                         <GridViewColumn  Header="Группа" Width="80" DisplayMemberBinding="{Binding Group}"/>
@@ -189,17 +189,9 @@
 
         <StackPanel Grid.Row="3">
             <TextBlock FontSize="15" Text="Выбрать дату:"/>
-            <DatePicker  x:Name="calendar"
+            <DatePicker  x:Name="datePicker" SelectedDateChanged="DatePicker_SelectedDateChanged"
             SelectedDate="{Binding SelectedDate1}" 
                   FontFamily="35" FontSize="15"/>
-            <Button Content="Показать список по дате " Click="click"/>
-            <ListView  Height="150" ItemsSource="{Binding Replacement2}" >
-                <ListView.View  >
-                    <GridView >
-                        <GridViewColumn Width="100"   Header="Дата" DisplayMemberBinding="{Binding Date}"/>
-                    </GridView >
-                </ListView.View  >
-            </ListView    >
         </StackPanel>
 
     </Grid>
