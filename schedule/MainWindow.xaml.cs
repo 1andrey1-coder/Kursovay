@@ -302,22 +302,22 @@ namespace schedule
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            DayOfWeek selectedDateDayOfWeek = ((DateTime)datePicker.SelectedDate).DayOfWeek;
-            TblWeekday selectedComboBoxDayOfWeek = ((TblWeekday)Combobox4.SelectedItem);
-            if(selectedDateDayOfWeek == selectedComboBoxDayOfWeek)
-            {
-                DateTime? selectedDate = datePicker.SelectedDate;
-                listschedule2.ItemsSource = Replacement.Where(s => s.Date == selectedDate.Value).ToList();
-            }
+            //DayOfWeek selectedDateDayOfWeek = ((DateTime)datePicker.SelectedDate).DayOfWeek;
+            //DayOfWeek selectedComboBoxDayOfWeek = ((DayOfWeek)Combobox4.SelectedItem);
+            //if(selectedDateDayOfWeek == selectedComboBoxDayOfWeek)
+            //{
+            //    DateTime? selectedDate = datePicker.SelectedDate;
+            //    listschedule2.ItemsSource = Replacement.Where(s => s.Date == selectedDate.Value).ToList();
+            //}
 
 
 
             //работает
-            //DateTime? selectedDate = datePicker.SelectedDate;
-            //if(selectedDate != null)
-            //{
-            //    listschedule2.ItemsSource = Replacement.Where(s=>s.Date == selectedDate.Value).ToList();
-            //}
+            DateTime? selectedDate = datePicker.SelectedDate;
+            if (selectedDate != null)
+            {
+                listschedule2.ItemsSource = Replacement.Where(s => s.Date == selectedDate.Value).ToList();
+            }
         }
     }
 }
