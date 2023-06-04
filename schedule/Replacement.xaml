@@ -120,6 +120,7 @@
                     <Label Margin="0,6,0,0" Background="White">
                         <TextBlock Text="Добавление записи " Width="130"  />
                     </Label>
+                    <TextBlock Text="Группа"/>
                     <ComboBox x:Name="ComboboxGroup" Width="130"  DisplayMemberPath="Group"
                               ItemsSource="{Binding Group1}" 
                               SelectedItem="{Binding SelectedGroup1}" IsEditable="True"
