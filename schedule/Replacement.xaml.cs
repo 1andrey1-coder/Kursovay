@@ -147,6 +147,12 @@ namespace schedule
         public List<TblReplacement> TblReplacement { get => TblReplacement1; set { TblReplacement1 = value; Fill(); } }
         private List<TblReplacement> TblReplacement1;
 
+        public List<TblGroup> Group1 { get; set; }
+        public List<TblName> Name { get; set; }
+        public List<TblPair> pair { get; set; }
+        public List<TblPredmet2> Predmet2 { get; set; }
+        public List<TblAudit> audit { get; set; }
+
         public Replacement()
         {
             InitializeComponent();
@@ -163,10 +169,24 @@ namespace schedule
 
             TblReplacement = DB.GetInstance().TblReplacements.ToList();
             tbl_replacement = DB.GetInstance().TblReplacements.ToList();
-           
+
+            Group1 = DB.GetInstance().TblGroups.ToList();
+            Name = DB.GetInstance().TblNames.ToList();
+            pair = DB.GetInstance().TblPairs.ToList();
+            Predmet2 = DB.GetInstance().TblPredmet2s.ToList();
+            audit = DB.GetInstance().TblAudits.ToList();
+
+
+            ComboboxGroup.ItemsSource = Group1;
+            ComboboxPrepod.ItemsSource = Name;
+            ComboboxPair.ItemsSource = pair;
+            ComboboxPred.ItemsSource = Predmet2;
+            ComboboxAudit.ItemsSource = audit;
+
+
             //скрывает все данные в List View tbl_replacement
             //tbl_replacement = DB.GetInstance().TblReplacements.Where(s => s.Equals(SelectedDay)).ToList();
-          
+
 
             //tbl2 = DB.GetInstance().TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
 
@@ -213,16 +233,31 @@ namespace schedule
                         kreating = Visibility.Visible;
                         Fill(nameof(tReplacements));
 
-               
+
+                    if (ComboboxGroup.SelectedIndex == -1 || ComboboxPrepod.SelectedIndex == -1 ||
+                    ComboboxPair.SelectedIndex == -1 || ComboboxPred.SelectedIndex == -1
+                    || ComboboxAudit.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Не все данные выбраны", "Предупреждение",
+                            MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                    }
+                    else
+                    {
                         replacement.WeekdaysId = SelectedDay.Id;
+                        replacement.Group = ((TblGroup)ComboboxGroup.SelectedItem).Group;
+                        replacement.Predmet = ((TblPredmet2)ComboboxPred.SelectedItem).Predmet2;
+                        replacement.Name = ((TblName)ComboboxPrepod.SelectedItem).Name;
+                        replacement.Pair = ((TblPair)ComboboxPair.SelectedItem).Pair;
+                        replacement.Cabinet = (int?)((TblAudit)ComboboxAudit.SelectedItem).Audit;
                         replacement.Date = DateTime.Now;
                         db.TblReplacements.Add(replacement);
                         db.SaveChanges();
                         tbl_replacement = DB.GetInstance().TblReplacements.Where
                         (s => s.WeekdaysId == SelectedDay.Id).ToList();
-                        replacement = new TblReplacement { Date = DateTime.Now } 
+                        replacement = new TblReplacement { Date = DateTime.Now }
                         /*{ Date = DateTime.Now}*/;
-
+                    }
 
 
 

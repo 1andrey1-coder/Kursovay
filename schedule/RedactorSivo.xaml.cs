@@ -88,23 +88,14 @@ namespace schedule
             grud = selectedGroup;
 
             Day = DB.GetInstance().TblWeekdays.ToList();
-
-            //не показывает
-            //Name = DB.GetInstance().TblObpreds.Where(s => s.Groupid == grud.GroupId).ToList();
             Name = DB.GetInstance().TblNames.ToList();
-            //не показывает
             pair = DB.GetInstance().TblPairs.ToList();
-
-            //не показывает
             Predmet2 = DB.GetInstance().TblPredmet2s.ToList();
-            //не показывает
-
             audit = DB.GetInstance().TblAudits.ToList();
 
             tbl2 = DB.GetInstance().TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
             DataGrid1 = DB.GetInstance().TblObpreds.Where(s => s.Groupid == grud.GroupId).ToList();
             //DataGrid1 = DB.GetInstance().TblGroups.Where(s => s.CourseId == grud.CourseId).ToList();
-            FillGroup();
 
 
             Combobox5.ItemsSource = Day;
@@ -172,31 +163,11 @@ namespace schedule
                         item1 = new TblScheduleDb();
 
                     }
-                    
-                  
-
-                    
-
-
-                    
-
-
-
                 }
 
             }
         }
-        private void FillGroup()
-        {
-            //Day = new List<TblWeekday>();
-            //Combobox5.SelectedIndex = 1;
-
-            SelectedDay = Day.FirstOrDefault();
-            //SelectedPrepod = prepod.FirstOrDefault();
-            //SelectedPair = pair.FirstOrDefault();
-            //SelectedDay = predmet.FirstOrDefault();
-            //SelectedAudit = audit.FirstOrDefault();
-        }
+       
 
         private void OBN(object sender, RoutedEventArgs e)
         {
@@ -210,15 +181,8 @@ namespace schedule
                 {
                     tbl2 = db.TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
                     db.SaveChanges();
-
                 }
-
-
-
             }
-
-
-
         }
 
         private void Delite(object sender, RoutedEventArgs e)
@@ -236,10 +200,6 @@ namespace schedule
                     //db.TblScheduleDbs.Update(item2);
                     DB.GetInstance().SaveChanges();
                     tbl2 = DB.GetInstance().TblScheduleDbs.Where(s => s.Groupid == SelectedGroup.GroupId).ToList();
-
-
-
-
 
                 }
             }

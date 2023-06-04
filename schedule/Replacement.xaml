@@ -120,16 +120,42 @@
                     <Label Margin="0,6,0,0" Background="White">
                         <TextBlock Text="Добавление записи " Width="130"  />
                     </Label>
-                    <TextBlock Text="Группа" Margin="0,10,0,0"/>
-                    <TextBox x:Name="group"  Text="{Binding Group}"/>
+                    <ComboBox x:Name="ComboboxGroup" Width="130"  DisplayMemberPath="Group"
+                              ItemsSource="{Binding Group1}" 
+                              SelectedItem="{Binding SelectedGroup1}" IsEditable="True"
+                             HorizontalAlignment="Left"/>
+                    <!--<TextBlock Text="Группа" Margin="0,10,0,0"/>
+                    <TextBox x:Name="group"  Text="{Binding Group}"/>-->
+
+                    <TextBlock Text="Преподователь"/>
+                    <ComboBox x:Name="ComboboxPrepod"
+                              DisplayMemberPath="Name" ItemsSource="{Binding Name}" 
+                              SelectedItem="{Binding SelectedPrepod}" IsEditable="True"
+                             HorizontalAlignment="Left" Width="130"   />
+                    <TextBlock Text="Пара"/>
+                    <ComboBox x:Name="ComboboxPair"
+                              DisplayMemberPath="Pair" ItemsSource="{Binding pair}" 
+                              SelectedItem="{Binding SelectedPair, UpdateSourceTrigger=PropertyChanged}" 
+                             HorizontalAlignment="Left"  Width="130"  />
+                    <TextBlock Text="Предмет"/>
+                    <ComboBox x:Name="ComboboxPred" IsEditable="True"
+                              DisplayMemberPath="Predmet2" ItemsSource="{Binding Predmet2}" 
+                              SelectedItem="{Binding SelectedPred, UpdateSourceTrigger=PropertyChanged}" 
+                             HorizontalAlignment="Left"  Width="130"   />
+                    <TextBlock Text="Аудитория"/>
+                    <ComboBox x:Name="ComboboxAudit" IsEditable="True"
+                              DisplayMemberPath="Audit" ItemsSource="{Binding audit}" 
+                              SelectedItem="{Binding SelectedAudit, UpdateSourceTrigger=PropertyChanged}" 
+                             HorizontalAlignment="Left" Width="130"  />
+                    <!--<TextBlock Text="Преподователь"/>
+                    <TextBox x:Name="Name"  Text="{Binding Name}"/>
                     <TextBlock Text="Пара"/>
                     <TextBox x:Name="Pair" Text="{Binding Pair}"/>
                     <TextBlock Text="Предмет"/>
                     <TextBox x:Name="Predmet"  Text="{Binding Predmet}"/>
                     <TextBlock Text="Аудитория"/>
-                    <TextBox x:Name="Cabinet"  Text="{Binding Cabinet}"/>
-                    <TextBlock Text="Преподователь"/>
-                    <TextBox x:Name="Name"  Text="{Binding Name}"/>
+                    <TextBox x:Name="Cabinet"  Text="{Binding Cabinet}"/>-->
+                    
 
                     <Button   Background="#fccf03"
                               HorizontalAlignment="Center" Content="Добавить запись"  Width="130"
