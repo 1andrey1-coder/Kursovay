@@ -287,8 +287,8 @@ namespace schedule
 
         private void saved(object sender, RoutedEventArgs e)
         {
-
             DB.GetInstance().SaveChanges();
+
             //if (SelectedDay != null)
             //{
             //    MessageBox.Show("Мы даем вам 2 шанс на изменение", "Рассуждение ");

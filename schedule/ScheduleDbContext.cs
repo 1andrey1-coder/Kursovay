@@ -31,6 +31,8 @@ public partial class ScheduleDbContext : DbContext
 
     public virtual DbSet<TblPredmet> TblPredmets { get; set; }
 
+    public virtual DbSet<TblPredmet2> TblPredmet2s { get; set; }
+
     public virtual DbSet<TblReplacement> TblReplacements { get; set; }
 
     public virtual DbSet<TblScheduleDb> TblScheduleDbs { get; set; }
@@ -43,7 +45,7 @@ public partial class ScheduleDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("host=localhost;userid=root;password=Myl1ttledvmk3003@;database=schedule_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
+        => optionsBuilder.UseMySql("host=localhost;user=root;password=Myl1ttledvmk3003@;database=schedule_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -178,6 +180,18 @@ public partial class ScheduleDbContext : DbContext
             entity.Property(e => e.Predmet)
                 .HasMaxLength(255)
                 .HasColumnName("predmet");
+        });
+
+        modelBuilder.Entity<TblPredmet2>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("tbl_predmet2");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Predmet2)
+                .HasMaxLength(255)
+                .HasColumnName("predmet2");
         });
 
         modelBuilder.Entity<TblReplacement>(entity =>

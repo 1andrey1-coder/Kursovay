@@ -33,9 +33,10 @@ namespace schedule
 
         private TblGroup SelectedGroup { get; set; }
         public TblGroup grud { get; set; }
-        public TblName SelectedPrepod { get; set; }
+        public TblObpred SelectedPrepod { get; set; }
         public TblAudit SelectedAudit { get; set; }
         public TblPair SelectedPair { get; set; }
+        public TblPredmet2 SelectedPred { get; set; }
 
         //1 таблица
         //public List<TblScheduleDb> tbl1 { get => tbl11; set { tbl11 = value; Fill(); } }
@@ -52,7 +53,6 @@ namespace schedule
 
         public TblScheduleDb item2 { get => item21; set { item21 = value; Fill(); } }
         private TblScheduleDb item21 = new TblScheduleDb();
-      
 
         public DbSet<Pair1> pairs { get; set; }
 
@@ -61,13 +61,19 @@ namespace schedule
         public List<TblWeekday> Day { get; set; }
         public List<TblName> Name { get; set; }
         public List<TblPair> pair { get; set; }
-        public List<TblObpred> predmet { get; set; }
+        public List<TblPredmet2> Predmet2 { get; set; }
         public List<TblAudit> audit { get; set; }
 
+        //get => SelectedDay1; set
+        //    {
+        //        SelectedDay1 = value;
+        //        var db = new ScheduleDbContext();
+        //Replacement = db.TblReplacements.Where(s => s.WeekdaysId == SelectedDay2.Id).ToList();
 
 
 
-        public TblWeekday SelectedDay { get; set; }
+        public TblWeekday SelectedDay { get => selectedDay; set { selectedDay = value; Fill(); } }
+        private TblWeekday selectedDay;
 
         public bool Editable { get; set; }
         public string? SelectedItem { get; private set; }
@@ -90,7 +96,7 @@ namespace schedule
             pair = DB.GetInstance().TblPairs.ToList();
 
             //не показывает
-            predmet = DB.GetInstance().TblObpreds.Where(s => s.Groupid == grud.GroupId).ToList();
+            Predmet2 = DB.GetInstance().TblPredmet2s.ToList();
             //не показывает
 
             audit = DB.GetInstance().TblAudits.ToList();
@@ -98,15 +104,15 @@ namespace schedule
             tbl2 = DB.GetInstance().TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
             DataGrid1 = DB.GetInstance().TblObpreds.Where(s => s.Groupid == grud.GroupId).ToList();
             //DataGrid1 = DB.GetInstance().TblGroups.Where(s => s.CourseId == grud.CourseId).ToList();
+            FillGroup();
 
 
             Combobox5.ItemsSource = Day;
             ComboboxPrepod.ItemsSource = Name;
             ComboboxPair.ItemsSource = pair;
-            ComboboxPred.ItemsSource = predmet;
+            ComboboxPred.ItemsSource = Predmet2;
             ComboboxAudit.ItemsSource = audit;
-            FillGroup();
-
+            
 
             var user = DB.GetInstance().TblCourses.Include
              (s => s.TblObpreds);
@@ -142,68 +148,37 @@ namespace schedule
                     
 
 
-                    item1.Groupid = SelectedGroup.GroupId;
-                    if(Combobox5 != null)
+                   
+                    if(Combobox5.SelectedIndex==-1 || ComboboxPrepod.SelectedIndex==-1 || 
+                        ComboboxPair.SelectedIndex==-1 || ComboboxPred.SelectedIndex==-1
+                        || ComboboxAudit.SelectedIndex==-1 )
                     {
-                        MessageBox.Show("Выберите день недели", "Предупреждение",
-                          MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Не все данные выбраны", "Предупреждение", 
+                            MessageBoxButton.OK, MessageBoxImage.Warning);
+
                     }
                     else
                     {
+                        item1.Groupid = SelectedGroup.GroupId;
                         item1.Day = ((TblWeekday)Combobox5.SelectedItem).Day;
-
-                      
-
-                    }
-
-                    if (ComboboxPred != null)
-                    {
-                        MessageBox.Show("Выберите день недели", "Предупреждение",
-                          MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
-                        //item1.Predmet = ((TblObpred)ComboboxPred.SelectedItem).Predmet;
-
-                    }
-                    if (ComboboxPrepod != null)
-                    {
-                        MessageBox.Show("Выберите день недели", "Предупреждение",
-                          MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
+                        item1.Predmet = ((TblPredmet2)ComboboxPred.SelectedItem).Predmet2;
                         item1.Name = ((TblName)ComboboxPrepod.SelectedItem).Name;
-
-                    }
-                    if (ComboboxPair != null)
-                    {
-                        MessageBox.Show("Выберите день недели", "Предупреждение",
-                          MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
                         item1.Pair = ((TblPair)ComboboxPair.SelectedItem).Pair;
-
-
-
-                    }
-                    if (ComboboxAudit != null)
-                    {
-                        MessageBox.Show("Выберите день недели", "Предупреждение",
-                          MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
                         item1.Cabinet = ((TblAudit)ComboboxAudit.SelectedItem).Audit;
 
+                        db.TblScheduleDbs.Add(item1);
+                        db.SaveChanges();
+                        tbl2 = db.TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
+                        item1 = new TblScheduleDb();
+
                     }
+                    
+                  
+
+                    
 
 
-                    db.TblScheduleDbs.Add(item1);
-                    db.SaveChanges();
-                    tbl2 = db.TblScheduleDbs.Where(s => s.Groupid == grud.GroupId).ToList();
-                    item1 = new TblScheduleDb();
+                    
 
 
 
@@ -213,11 +188,14 @@ namespace schedule
         }
         private void FillGroup()
         {
+            //Day = new List<TblWeekday>();
+            //Combobox5.SelectedIndex = 1;
+
             SelectedDay = Day.FirstOrDefault();
             //SelectedPrepod = prepod.FirstOrDefault();
-            SelectedPair = pair.FirstOrDefault();
+            //SelectedPair = pair.FirstOrDefault();
             //SelectedDay = predmet.FirstOrDefault();
-            SelectedAudit = audit.FirstOrDefault();
+            //SelectedAudit = audit.FirstOrDefault();
         }
 
         private void OBN(object sender, RoutedEventArgs e)

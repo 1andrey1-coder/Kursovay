@@ -101,14 +101,14 @@
                 <StackPanel DataContext="{Binding item1}">
 
                     <TextBlock Text="День"/>
-                    <ComboBox x:Name="Combobox5"
+                    <ComboBox x:Name="Combobox5" 
                               DisplayMemberPath="Day" ItemsSource="{Binding Day}" 
-                              SelectedItem="{Binding SelectedDay, UpdateSourceTrigger=PropertyChanged}" 
+                              SelectedItem="{Binding SelectedDay}" IsEditable="True"
                              HorizontalAlignment="Left"  Width="100"  />
                     <TextBlock Text="Преподователь"/>
                     <ComboBox x:Name="ComboboxPrepod"
                               DisplayMemberPath="Name" ItemsSource="{Binding Name}" 
-                              SelectedItem="{Binding SelectedPrepod, UpdateSourceTrigger=PropertyChanged}" 
+                              SelectedItem="{Binding SelectedPrepod}" IsEditable="True"
                              HorizontalAlignment="Left"  Width="100"  />
                     <TextBlock Text="Пара"/>
                     <ComboBox x:Name="ComboboxPair"
@@ -116,12 +116,12 @@
                               SelectedItem="{Binding SelectedPair, UpdateSourceTrigger=PropertyChanged}" 
                              HorizontalAlignment="Left"  Width="100"  />
                     <TextBlock Text="Предмет"/>
-                    <ComboBox x:Name="ComboboxPred"
-                              DisplayMemberPath="Pred" ItemsSource="{Binding predmet}" 
+                    <ComboBox x:Name="ComboboxPred" IsEditable="True"
+                              DisplayMemberPath="Predmet2" ItemsSource="{Binding Predmet2}" 
                               SelectedItem="{Binding SelectedPred, UpdateSourceTrigger=PropertyChanged}" 
                              HorizontalAlignment="Left"  Width="100"  />
                     <TextBlock Text="Аудитория"/>
-                    <ComboBox x:Name="ComboboxAudit"
+                    <ComboBox x:Name="ComboboxAudit" IsEditable="True"
                               DisplayMemberPath="Audit" ItemsSource="{Binding audit}" 
                               SelectedItem="{Binding SelectedAudit, UpdateSourceTrigger=PropertyChanged}" 
                              HorizontalAlignment="Left"  Width="100"  />
