@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:schedule"
         mc:Ignorable="d"
-        Title="Расписание Колледжа" Height="600" Width="980" Background="LightSkyBlue"
+        Title="Расписание Колледжа" Height="600" Width="1280" Background="LightSkyBlue"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -34,10 +34,10 @@
         </Style>
 
     </Window.Resources>
-    
+
     <Grid>
 
-        
+
 
 
         <Grid.RowDefinitions>
@@ -52,7 +52,7 @@
             <ColumnDefinition Width="646" />
             <ColumnDefinition  />
         </Grid.ColumnDefinitions>
-            
+
         <StackPanel Height="24" VerticalAlignment="Center"
                     Grid.Column="0"  Grid.Row="1" Orientation="Horizontal" Margin="0,0,2,0">
             <ComboBox Background="Azure"  
@@ -72,20 +72,21 @@
                     Margin="0,7,0,0" Width="700" Height="298">
             <TextBlock FontSize="15" Text="Поиск по преподователю" Width="200"
                        HorizontalAlignment="Left" DockPanel.Dock="Top"  />
-            <TextBox  DockPanel.Dock="Top" Width="200" HorizontalAlignment="Left" Text="{Binding SearchText,
+            <TextBox  DockPanel.Dock="Top" Width="200" HorizontalAlignment="Left"
+                      Text="{Binding SearchText,
                 UpdateSourceTrigger=PropertyChanged}"  x:Name="txtFilter2" />
-        
+
 
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1
                     " Grid.Row="1" Margin="0,10,17,0" Height="24">
-            
-        <ComboBox   Width="148" HorizontalAlignment="Left" x:Name="Combobox2"
+
+            <ComboBox   Width="148" HorizontalAlignment="Left" x:Name="Combobox2"
                         ItemsSource="{Binding Selected}" SelectedItem="{Binding SelectedGroup2}"
                         DisplayMemberPath="Group"/>
-        <!--<Button  Background="#fccf03" Width="108" Content="Обновить" Click="tbl2obnov" />-->
-        
+            <!--<Button  Background="#fccf03" Width="108" Content="Обновить" Click="tbl2obnov" />-->
+
         </StackPanel>
         <Label HorizontalAlignment="Left" Grid.Column="0" Width="81" Margin="0,0,0,36" Grid.RowSpan="2"  >
             <TextBlock FontSize="15" Text="Группы" Width="65" Height="26" />
@@ -93,7 +94,7 @@
         <Label HorizontalAlignment="Left" Grid.Column="1" Width="326"  Grid.RowSpan="2"  >
             <TextBlock FontSize="15" Text="Просмотр расписания у групп" Width="318" Margin="-5,0,0,0" Height="26" />
         </Label>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" 
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" 
                     Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="3" Width="700" Height="306">
             <Label   Width="160">
                 <TextBlock FontSize="14" Text="    Замененные пары" Width="155"/>
@@ -112,34 +113,39 @@
             <ComboBox  x:Name="Combobox4" SelectedIndex="{Binding Day1}"
                        DisplayMemberPath="Day" ItemsSource="{Binding Selected2}" 
                        SelectedItem="{Binding SelectedDay2}" Margin="0,20,40,0" Width="140" Height="23"/>
-            
+
 
         </StackPanel>
 
 
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" 
                     Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="3"
-                    Margin="1,0,0,0" Width="700" Height="225" >
+                    Margin="1,0,0,0" Width="727" Height="225" >
 
 
 
             <ListView Background="LightBlue" HorizontalAlignment="Left" 
-                      x:Name="listschedule2"  MinHeight="150" ItemsSource="{Binding Replacement}" Height="195"    >
+                      x:Name="listschedule2"  MinHeight="150" ItemsSource="{Binding Replacement}" Height="195" Width="728"    >
                 <ListView.View  >
                     <GridView >
-                        <GridViewColumn  Header="Группа" Width="150" DisplayMemberBinding="{Binding Group}"/>
+                        <GridViewColumn  Header="Группа" Width="80" DisplayMemberBinding="{Binding Group}"/>
                         <GridViewColumn Header="Пара" Width="70" DisplayMemberBinding="{Binding Pair}"/>
-                        <GridViewColumn Header="Аудитория" Width="100" DisplayMemberBinding="{Binding Cabinet}" />
+                        <GridViewColumn Header="Аудитория" Width="90" DisplayMemberBinding="{Binding Cabinet}" />
                         <GridViewColumn Header="Преподователь" Width="170" DisplayMemberBinding="{Binding Name}" />
                         <GridViewColumn Header="Предмет" Width="150" DisplayMemberBinding="{Binding Predmet}"/>
+                        <GridViewColumn Width="140"   Header="Дата" DisplayMemberBinding="{Binding Date}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
         </StackPanel>
 
-        <StackPanel HorizontalAlignment="Left"
-                    Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="1"
-                    Width="652" Margin="0,0,0,3" >
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"
+                    Width="636" Height="203" >
+            <TextBlock Text="Фильтрация по дням" FontFamily="10" FontSize="15" />
+            <ComboBox   Width="148" HorizontalAlignment="Left" x:Name="ComboboxDay"
+                        ItemsSource="{Binding Day3}" SelectedItem="{Binding SelectedDay3}"
+                        DisplayMemberPath="Day"/>
+
             <ListView  x:Name="groupi" ItemsSource="{Binding TblScheduleDb}" Background="LightBlue"
                        MaxWidth="900" Width="652"  Height="200">
                 <ListView.View>
@@ -157,22 +163,29 @@
         <StackPanel Grid.Row="1" Grid.Column="1"  >
             <TextBlock FontSize="15" Text="Поиск по преподователю" Width="200"
                        HorizontalAlignment="Left" DockPanel.Dock="Top"  />
-            <TextBox  DockPanel.Dock="Top" Width="200" HorizontalAlignment="Left" Text="{Binding SearchText2,
+            <TextBox  DockPanel.Dock="Top" Width="200" HorizontalAlignment="Left"
+                      Text="{Binding SearchText2,
                 UpdateSourceTrigger=PropertyChanged}"  x:Name="txtFilter3" />
-           
+            <Label Content="Производитель" Width="490"/>
+
+
+
+
         </StackPanel>
+        <Button  Click="VCE2"
+            Margin="258,19,218,32" Background="#fccf03" Grid.Column="1" Content="Очистить фильтрацию"
+                Width="170" Grid.RowSpan="2"/>
         <Button  Click="VCE"
-            
-            Margin="40,12,0,0" Background="#ffe675" 
-            Grid.Row="1" Grid.Column="1" Content="Показать весь список"
-                Width="170" Height="22"/>
-        
+            Margin="264,17,225,6" Background="#ffe675" 
+            Grid.Row="1" Grid.Column="1" Content="Показать весь список" Height="22"/>
+
+
         <Image Grid.Row="2" Height="150" 
                Width="150" VerticalAlignment="Center" HorizontalAlignment="Center"
                Source="Картинки\Без названия-PhotoRoom.png-PhotoRoom.png" />
 
 
- 
+
 
         <StackPanel Grid.Row="3">
             <TextBlock FontSize="15" Text="Выбрать дату:"/>
@@ -184,10 +197,10 @@
                 <ListView.View  >
                     <GridView >
                         <GridViewColumn Width="100"   Header="Дата" DisplayMemberBinding="{Binding Date}"/>
-                     </GridView >
+                    </GridView >
                 </ListView.View  >
             </ListView    >
         </StackPanel>
-       
+
     </Grid>
 </Window>

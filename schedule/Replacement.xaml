@@ -88,11 +88,11 @@
 
 
             <Button  Background="#fccf03"  x:Name="Dobav" Margin="0,0,0,0"  HorizontalAlignment="Center"
-                     Content="Добавить запись"  Width="130" Height="24"
+                     Content="Добавить запись"  Width="139" Height="27"
                     Command="{Binding GipleCommand}"/>
 
             <Button  Background="#fccf03" x:Name="Del" HorizontalAlignment="Center"
-                    Content="Удалить запись"  Width="130" Height="23"
+                    Content="Удалить запись"  Width="139" Height="26"
                     Click="Delet" />
             <StackPanel VerticalAlignment="Top" DataContext="{Binding Selected}" Visibility="Visible">
                 <Label Background="White" Margin="0,8,0,0">
@@ -110,7 +110,7 @@
                 <TextBox  Text="{Binding Path=Name}"/>
                 <Button  Background="#fccf03"  x:Name="Repair"
                          HorizontalAlignment="Center" Content="Редактировать" 
-                         Margin="0,7,0,0" Width="130" Height="25"
+                         Margin="0,7,0,0" Width="137" Height="27"
                    Click="saved"/>
 
             </StackPanel>
@@ -156,11 +156,11 @@
                     <TextBox x:Name="Predmet"  Text="{Binding Predmet}"/>
                     <TextBlock Text="Аудитория"/>
                     <TextBox x:Name="Cabinet"  Text="{Binding Cabinet}"/>-->
-                    
+
 
                     <Button   Background="#fccf03"
-                              HorizontalAlignment="Center" Content="Добавить запись"  Width="130"
-                              Margin="0,6,0,0" Height="25"
+                              HorizontalAlignment="Center" Content="Добавить запись"  Width="141"
+                              Margin="0,6,0,0" Height="30"
                    Click="Dob" x:Name="CustomMessageBox"/>
 
                 </StackPanel>

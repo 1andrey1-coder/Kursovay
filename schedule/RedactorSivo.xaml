@@ -38,7 +38,7 @@
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="17"/>
             <ColumnDefinition Width="295"  />
-            <ColumnDefinition Width="144"/>
+            <ColumnDefinition Width="158"/>
             <ColumnDefinition />
 
 
@@ -95,15 +95,15 @@
 
 
 
-        <Button Grid.Column="1" VerticalAlignment="Bottom" 
-                Background="#fccf03" Content="Сохранить " Height="25" Margin="10,0,97,10" Grid.ColumnSpan="2"/>
+        <Button Grid.Column="2" VerticalAlignment="Bottom" 
+                Background="#fccf03" Content="Сохранить " Height="25" Margin="5,0,85,26"/>
 
 
 
         <StackPanel  Grid.Row="0"   Grid.Column="3"
                   >
-            <Button Background="#fccf03" Content="Сохранить запись" Click="Save"   Height="27"/>
-            <Label Background="LightBlue" >
+            <Button Background="#fccf03" Content="Сохранить запись" Click="Save"   Height="27" Width="145"/>
+            <Label Background="LightBlue" Width="141" >
                 <StackPanel DataContext="{Binding item1}">
 
                     <TextBlock Text="День"/>
@@ -172,10 +172,10 @@
         <StackPanel Height="250"  VerticalAlignment="Center" 
                      Grid.Row="2" Grid.Column="3" >
 
-            <Button Background="#fccf03" Height="30"  Margin="0,0,0,0"
-                        x:Name="Repair2" Content="Редактировать запись"  Click="saved"/>
+            <Button Background="#fccf03" Height="28"  Margin="0,0,0,0"
+                        x:Name="Repair2" Content="Редактировать запись"  Click="saved" Width="150"/>
 
-            <Label  Background="LightBlue">
+            <Label  Background="LightBlue" Width="145">
 
                 <StackPanel  DataContext="{Binding item2}" >
                     <Label>
@@ -204,12 +204,10 @@
 
 
         <StackPanel  Grid.Row="1" Orientation="Horizontal" 
-                    HorizontalAlignment="Center" Grid.Column="2" Margin="0,2,0,3" Width="192" 
-                   
-                     >
+                    HorizontalAlignment="Right" Grid.Column="2" Margin="0,2,0,3" Width="192" >
 
             <!--<Button  Background="#fccf03" Content="Обновить таблицу" Click="OBN" Width="125"  />-->
-            <Button  Background="#fccf03" Content="Удалить запись с таблицы" Click="Delite" Height="35" Width="191" />
+            <Button  Background="#fccf03" Content="Удалить запись с таблицы" Click="Delite" Height="36" Width="181" />
 
         </StackPanel>
         <Label  Grid.Column="0" Grid.ColumnSpan="2" 

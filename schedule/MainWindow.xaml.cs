@@ -40,6 +40,12 @@ namespace schedule
                 var db = new ScheduleDbContext();
                 TblScheduleDb = db.TblScheduleDbs.Where(s => s.Groupid == SelectedGroup2.GroupId).ToList();
             }  }
+        public TblWeekday SelectedDay3 { get => selectedDay3; set { selectedDay3 = value; 
+                var db = new ScheduleDbContext();
+                TblScheduleDb = db.TblScheduleDbs.
+                    Where(s => s.Day == SelectedDay3.Day).ToList();
+            }
+        }
 
         public TblGroup grud { get; set; }
 
@@ -70,6 +76,7 @@ namespace schedule
         }
         private TblWeekday SelectedDay1;
         public List<TblWeekday> Day { get; set; }
+        public List<TblWeekday> Day3 { get; set; }
         public MainWindow()
         {
 
@@ -90,6 +97,7 @@ namespace schedule
 
             //вывод данных в таблицах и спискахИзначально это исключение 
 
+            Day3 = DB.GetInstance().TblWeekdays.ToList();
             Day = DB.GetInstance().TblWeekdays.ToList();
             Replacement = DB.GetInstance().TblReplacements.ToList();
             Replacement2 = DB.GetInstance().TblReplacements.ToList();
@@ -108,6 +116,7 @@ namespace schedule
             Combobox.ItemsSource = Group;
             Combobox2.ItemsSource = Group2;
             Combobox4.ItemsSource = Day;
+            ComboboxDay.ItemsSource = Day3;
 
 
             grud = new TblGroup();
@@ -122,6 +131,7 @@ namespace schedule
         private string searchText = "";
         private string searchText2 = "";
         private TblGroup selectedGroup2;
+        private TblWeekday selectedDay3;
 
         public string SearchText
         {
@@ -161,12 +171,16 @@ namespace schedule
            
                 var db = new ScheduleDbContext();
                 var result = db.TblScheduleDbs.Where(s => s.Name.Contains(searchText2));
-
+                //var result2 = db.TblScheduleDbs.Where(s => s.Day.Contains(searchText2));
+               
                 if (SelectedGroup2 != null && SelectedGroup2.GroupId != 0)
                 result = result.Where(s => s.Groupid == SelectedGroup2.GroupId);
-                //TblScheduleDb = result.Where(s => s.Groupid == SelectedGroup2.GroupId).ToList();
+
+                //if (SelectedDay3 != null && SelectedDay3.Id != 0)
+                //result = result.Where(s => s.Day == SelectedDay3.Day);
+
                 TblScheduleDb = result.ToList();
-                //TblScheduleDb = result.ToList();
+                //TblScheduleDb = result2.ToList();
                 Signal(nameof(TblScheduleDb));
 
             
@@ -303,11 +317,12 @@ namespace schedule
                 //    MessageBox.Show("Проверьте выбраный день");
                 //}
 
-                //Replacement2  = db.TblReplacements.Where(s=>s.Date == SelectedDate1.Date).ToList();
+                //Replacement = db.TblReplacements.Where(s => s.Date == SelectedDate1.Date).ToList();
 
 
                 //DateTime SelectedDate1 = DateTime.Today;
-                //Replacement2 = DB.GetInstance().TblReplacements.ToList();
+                Replacement = db.TblReplacements.Where(s => s.WeekdaysId == SelectedDay2.Id).ToList();
+                //Replacement = DB.GetInstance().TblReplacements.ToList();
             }
         }
         
@@ -317,7 +332,9 @@ namespace schedule
             
         }
 
-
-
+        private void VCE2(object sender, RoutedEventArgs e)
+        {
+            TblScheduleDb = DB.GetInstance().TblScheduleDbs.ToList();
+        }
     }
 }
