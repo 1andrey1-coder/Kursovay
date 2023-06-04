@@ -210,39 +210,21 @@ namespace schedule
                     MessageBoxImage.Asterisk);
                 using (var db = new ScheduleDbContext())
                 {
-                    kreating = Visibility.Visible;
-                    Fill(nameof(tReplacements));
+                        kreating = Visibility.Visible;
+                        Fill(nameof(tReplacements));
 
-                    //var entity = new TblReplacement() { Name = "Name" };
-                    //var existingEntity = db.TblReplacements.FirstOrDefault(x => x.Name == entity.Name);
-
-
-                    //var existingItems = db.TblReplacements.Where
-                    //    (s => s.Name == s.Name && s.Group == s.Group && s.Group != SelectedDay.Id).ToList();
-                    //if (existingItems.Any())
-                    //{
-
-                    //    MessageBox.Show("Такая запись есть");
-
-                    //}
-                    //else
-                    //{
+               
                         replacement.WeekdaysId = SelectedDay.Id;
                         replacement.Date = DateTime.Now;
-                    db.TblReplacements.Add(replacement);
+                        db.TblReplacements.Add(replacement);
                         db.SaveChanges();
-                        tbl_replacement = DB.GetInstance().TblReplacements.Where(s => s.WeekdaysId == SelectedDay.Id).ToList();
+                        tbl_replacement = DB.GetInstance().TblReplacements.Where
+                        (s => s.WeekdaysId == SelectedDay.Id).ToList();
+                        replacement = new TblReplacement { Date = DateTime.Now } 
+                        /*{ Date = DateTime.Now}*/;
 
-                    //}
 
 
-                    //tbl_replacement = db.TblReplacements.Where(s => s.Id == SelectedDay.Id).ToList();
-
-                    //DB.GetInstance().TblReplacements.Update(Selected);
-                    ////tbl_replacement = DB.GetInstance().TblReplacements.ToList();
-                    ///
-               
-                    replacement = new TblReplacement { Date = DateTime.Now } /*{ Date = DateTime.Now}*/;
 
                 }
             }
