@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using schedule;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -39,8 +41,7 @@ namespace schedule
         public TblPredmet2 SelectedPred { get; set; }
 
         //1 таблица
-        //public List<TblScheduleDb> tbl1 { get => tbl11; set { tbl11 = value; Fill(); } }
-        //private List<TblScheduleDb> tbl11;
+        
 
         public TblScheduleDb item1 { get => item11; set { item11 = value; Fill(); } }
         private TblScheduleDb item11 = new TblScheduleDb();
@@ -64,13 +65,28 @@ namespace schedule
         public List<TblPredmet2> Predmet2 { get; set; }
         public List<TblAudit> audit { get; set; }
 
-        //get => SelectedDay1; set
+        //private int hours;
+        //private int pairCount;
+        //public int Hours
+        //{
+        //    get { return hours; }
+        //    set
         //    {
-        //        SelectedDay1 = value;
-        //        var db = new ScheduleDbContext();
-        //Replacement = db.TblReplacements.Where(s => s.WeekdaysId == SelectedDay2.Id).ToList();
+        //        hours = value;
+        //        RaisePropertyChanged("Hours");
+        //        RaisePropertyChanged("PairCount");
 
-
+        //    }
+        //}
+        //public int PairCount
+        //{
+        //    get { return hours * 2; }
+        //}
+        //private void RaisePropertyChanged(string propertyName)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
+      
 
         public TblWeekday SelectedDay { get => selectedDay; set { selectedDay = value; Fill(); } }
         private TblWeekday selectedDay;
@@ -110,6 +126,7 @@ namespace schedule
 
         
         }
+      
 
         private void Fill([CallerMemberName] string name = null)
         {

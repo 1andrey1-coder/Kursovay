@@ -32,7 +32,7 @@ namespace schedule
         public TblGroup SelectedGroup { get; set; }
         public TblReplacement SelectedDate1 { get; set; }
         public TblWeekday SelectedDate2 { get; set; }
-        //public DateTime Today { get; set; }
+  
 
 
         public TblGroup SelectedGroup2 { get => selectedGroup2;
@@ -90,8 +90,7 @@ namespace schedule
 
             //поиск
 
-            //Today = DateTime.Now;
-            //SelectedDate1 = DateTime.Now;
+           
 
 
 
@@ -102,14 +101,13 @@ namespace schedule
             Replacement = DB.GetInstance().TblReplacements.ToList();
             Replacement2 = DB.GetInstance().TblReplacements.ToList();
             TblScheduleDb = DB.GetInstance().TblScheduleDbs.ToList();
-            //TblScheduleDb = DB.GetInstance().TblScheduleDbs.Where(s => s.Id == SelectedGroup2.GroupId).ToList();
-            //listschedule2.ItemsSource = Replacement;
+            
 
             FillGroup();
             var user = DB.GetInstance().TblGroups.Include
                 (s => s.SemestrNuber).Include
                 (s => s.SemestrWeek);
-            /* (s => s.CourseId)*/
+        
 
             Group = DB.GetInstance().TblGroups.ToList();
             Group2 = DB.GetInstance().TblGroups.ToList();
@@ -172,16 +170,16 @@ namespace schedule
                 var db = new ScheduleDbContext();
                 var result = db.TblScheduleDbs.Where(s => s.Name.Contains(searchText2));
                 //var result2 = db.TblScheduleDbs.Where(s => s.Day.Contains(searchText2));
-               
+
                 if (SelectedGroup2 != null && SelectedGroup2.GroupId != 0)
                 result = result.Where(s => s.Groupid == SelectedGroup2.GroupId);
 
-                //if (SelectedDay3 != null && SelectedDay3.Id != 0)
-                //result = result.Where(s => s.Day == SelectedDay3.Day);
+            //if (Combobox2 != null && SelectedDay3.Id != 0)
+            //    result = result.Where(s => s.Day == SelectedDay3.Day);
 
-                TblScheduleDb = result.ToList();
-                //TblScheduleDb = result2.ToList();
-                Signal(nameof(TblScheduleDb));
+            TblScheduleDb = result.ToList();
+            //TblScheduleDb = result2.ToList();
+            Signal(nameof(TblScheduleDb));
 
             
             
@@ -229,17 +227,13 @@ namespace schedule
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-        //private void perexod(object sender, MouseButtonEventArgs e)
-        //{
-
-
-        //}
+      
         private void Obv(object sender, RoutedEventArgs e)
         {
             using (var db = new ScheduleDbContext())
             {
                 TblScheduleDb = db.TblScheduleDbs.Where(s => s.Groupid ==SelectedGroup2.GroupId).ToList();
-                //TblScheduleDb = db.TblScheduleDbs.ToList();
+            
                 db.SaveChanges();
 
             }
@@ -247,17 +241,12 @@ namespace schedule
 
         private void Obnov(object sender, RoutedEventArgs e)
         {
-            //var res = MessageBox.Show("Обновить таблицу?", "Потверждение", MessageBoxButton.YesNo,
-            //        MessageBoxImage.Question);
-            //if (res == MessageBoxResult.Yes)
-            //{
+            
                 using (var db = new ScheduleDbContext())
                 {
                     Replacement = db.TblReplacements.Where(s=>s.WeekdaysId==SelectedDay2.Id).ToList();
-                    //Replacement = db.TblReplacements.ToList();
                     db.SaveChanges();
                 }
-            //}
 
 
         }
@@ -289,7 +278,6 @@ namespace schedule
 
        
         
-            //MyCombobox4_SelectionChanged
         private void Day1(object sender, SelectionChangedEventArgs e)
         {
             

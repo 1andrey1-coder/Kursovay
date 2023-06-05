@@ -291,8 +291,14 @@ namespace schedule
             //{
             //    MessageBox.Show("Ошибка, нельзя удалить!", "Ошибка 404", MessageBoxButton.OK, MessageBoxImage.Error);
             //}
+            if (SelectedDay == null)
+            {
+                MessageBox.Show("Выберите день недели", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
 
-          
+
             var result = MessageBox.Show("Хотите удалить запись?", "Подтверждение",
                 MessageBoxButton.YesNo, MessageBoxImage.Question); 
 
@@ -313,30 +319,20 @@ namespace schedule
                     //tbl_replacement = DB.GetInstance().TblReplacements.ToList();
                 }
             }
-        }
-
-        private void saved(object sender, RoutedEventArgs e)
-        {
-            Selected.Group = Group;
-            DB.GetInstance().TblReplacements.Update(Selected);
-            DB.GetInstance().SaveChanges();
-
-            //if (SelectedDay != null)
-            //{
-            //    MessageBox.Show("Мы даем вам 2 шанс на изменение", "Рассуждение ");
-
-            //}
-            //else
-            //{
-            //    tbl_replacement = DB.GetInstance().TblReplacements.Where(s => s.WeekdaysId == SelectedDay.Id).ToList();
-
-
-
-            //}
-
-
+           }
 
         }
+
+        //private void saved(object sender, RoutedEventArgs e)
+        //{
+        //    Selected.Group = Group;
+        //    Selected.Predmet = Predmet;
+        //    Selected.Cabinet = Cabinet;
+        //    Selected.Pair = Pair;
+        //    DB.GetInstance().TblReplacements.Update(Selected);
+        //    DB.GetInstance().SaveChanges();
+
+        //}
 
         private void vce(object sender, RoutedEventArgs e)
         {

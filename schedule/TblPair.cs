@@ -8,6 +8,4 @@ public partial class TblPair
     public int Id { get; set; }
 
     public int? Pair { get; set; }
-
-    public virtual ICollection<TblDay> TblDays { get; } = new List<TblDay>();
 }

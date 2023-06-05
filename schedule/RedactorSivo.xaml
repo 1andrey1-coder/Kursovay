@@ -78,15 +78,15 @@
         </StackPanel>
 
 
-        <DataGrid x:Name="Datagrid" Grid.Row="0" Grid.Column="2" Height="201" Margin="5,5,10,0"
+        <DataGrid x:Name="Datagrid" CanUserAddRows="False" Grid.Row="0" Grid.Column="2" Height="201" Margin="5,5,10,0"
                   VerticalAlignment="Top" ItemsSource="{Binding DataGrid1}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="100"  Header="Предмет" IsReadOnly="True"
                                     Binding="{Binding Predmet}"/>
                 <DataGridTextColumn Width="60"  Header="Часы" IsReadOnly="False"
-                                    />
+                                   />
                 <DataGridTextColumn Width="85"  Header="Кол-во пар" IsReadOnly="True"
-                                    />
+                                   />
 
                 <!--<DataGridTextColumn Width="50" Header="Часы" Binding="{Binding Hours}"/>-->
                 <!--<DataGridTextColumn  Header="Кол-во пар" Binding="{Binding Pair}"/>-->

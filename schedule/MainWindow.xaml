@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:schedule"
         mc:Ignorable="d"
-        Title="Расписание Колледжа" MinHeight="600" MinWidth="1280" Background="LightSkyBlue"
+        Title="Расписание Колледжа" MinHeight="600" MinWidth="1000" Width="1100" Background="LightSkyBlue"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
