@@ -85,7 +85,15 @@ namespace schedule
 
         private Schedule selected = new Schedule();
        
-        public TblReplacement Selected { get => selected1; set { selected1 = value; Fill(); } }
+        public TblReplacement Selected 
+        {
+            get => selected1;
+            set
+            { 
+                selected1 = value;
+                Fill(); 
+            } 
+        }
         private TblReplacement selected1;
 
         private Schedule sel = new Schedule();
@@ -152,6 +160,11 @@ namespace schedule
         public List<TblPair> pair { get; set; }
         public List<TblPredmet2> Predmet2 { get; set; }
         public List<TblAudit> audit { get; set; }
+
+        public int Group { get; set; }
+        public int Pair { get; set; }
+        public string Predmet { get; set; }
+        public int Cabinet { get; set; }
 
         public Replacement()
         {
@@ -304,6 +317,8 @@ namespace schedule
 
         private void saved(object sender, RoutedEventArgs e)
         {
+            Selected.Group = Group;
+            DB.GetInstance().TblReplacements.Update(Selected);
             DB.GetInstance().SaveChanges();
 
             //if (SelectedDay != null)

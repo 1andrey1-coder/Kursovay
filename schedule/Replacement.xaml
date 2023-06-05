@@ -99,15 +99,15 @@
                     <TextBlock Text="Редактирование" />
                 </Label>
                 <TextBlock Text="Группа" Margin="0,8,0,0"/>
-                <TextBox  Text="{Binding Path=Group}"/>
+                <TextBox  Text="{Binding Group}"/>
                 <TextBlock Text="Пара"/>
-                <TextBox  Text="{Binding Path=Pair}"/>
+                <TextBox  Text="{Binding Pair}"/>
                 <TextBlock Text="Предмет"/>
-                <TextBox  Text="{Binding Path=Predmet}"/>
+                <TextBox  Text="{Binding Predmet}"/>
                 <TextBlock Text="Аудитория"/>
-                <TextBox  Text="{Binding Path=Cabinet}"/>
+                <TextBox  Text="{Binding Cabinet}"/>
                 <TextBlock Text="Преподователь"/>
-                <TextBox  Text="{Binding Path=Name}"/>
+                <TextBox  Text="{Binding Name}"/>
                 <Button  Background="#fccf03"  x:Name="Repair"
                          HorizontalAlignment="Center" Content="Редактировать" 
                          Margin="0,7,0,0" Width="137" Height="27"

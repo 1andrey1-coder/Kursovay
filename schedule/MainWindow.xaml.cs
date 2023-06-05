@@ -304,7 +304,7 @@ namespace schedule
         {
             //DayOfWeek selectedDateDayOfWeek = ((DateTime)datePicker.SelectedDate).DayOfWeek;
             //DayOfWeek selectedComboBoxDayOfWeek = ((DayOfWeek)Combobox4.SelectedItem);
-            //if(selectedDateDayOfWeek == selectedComboBoxDayOfWeek)
+            //if (selectedDateDayOfWeek == selectedComboBoxDayOfWeek)
             //{
             //    DateTime? selectedDate = datePicker.SelectedDate;
             //    listschedule2.ItemsSource = Replacement.Where(s => s.Date == selectedDate.Value).ToList();
