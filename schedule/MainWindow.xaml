@@ -192,6 +192,7 @@
             <DatePicker x:Name="datePicker" SelectedDateChanged="DatePicker_SelectedDateChanged"
             SelectedDate="{Binding SelectedDate1}" 
                   FontFamily="35" FontSize="15"/>
+            <!--<Button Content="Очистить дату" Margin="0,20,0,0" Click="Vce3" Height="25" Width="148"/>-->
         </StackPanel>
 
     </Grid>

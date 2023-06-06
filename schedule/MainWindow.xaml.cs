@@ -285,6 +285,8 @@ namespace schedule
 
         private void VCE2(object sender, RoutedEventArgs e)
         {
+            //ComboboxDay.ItemsSource = Day3;
+            //Day3 = null;
             TblScheduleDb = DB.GetInstance().TblScheduleDbs.ToList();
         }
 
@@ -298,14 +300,24 @@ namespace schedule
             //    listschedule2.ItemsSource = Replacement.Where(s => s.Date == selectedDate.Value).ToList();
             //}
 
-
+            //DateTime selectedDate = (DateTime)datePicker.SelectedDate;
+            //List<TblReplacement> replacement = Replacement.Where
+            //    (s => s.Date == selectedDate.Date).ToList();
+            //listschedule2.ItemsSource = replacement;
 
             //работает
             DateTime? selectedDate = datePicker.SelectedDate;
             if (selectedDate != null)
             {
+                //Replacement = DB.GetInstance().TblReplacements.Where(x => x.Date == selectedDate).ToList();
+                //listschedule2.ItemsSource = Replacement;
                 listschedule2.ItemsSource = Replacement.Where(s => s.Date == selectedDate.Value).ToList();
             }
         }
+
+        //private void Vce3(object sender, RoutedEventArgs e)
+        //{
+        //    datePicker.SelectedDate = null;
+        //}
     }
 }
